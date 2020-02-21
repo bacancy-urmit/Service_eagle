@@ -1,0 +1,17 @@
+<%form_with model:@company,local: true do |c| %>
+    <p>
+        <%c.label :company_name%>
+        <%c.text_field :name ,placeholder: "eg.Bajaj"%>
+    <p>
+
+    <p>
+        <%c.label :website%>
+        <%c.text_field :name ,placeholder: "eg.Bajaj"%>
+    <p>
+
+    <p>
+        <%c.label :email%>
+        <%c.text_field :name ,placeholder: "eg.Bajaj"%>
+    <p>
+    <%c.submit%>
+<%end%>

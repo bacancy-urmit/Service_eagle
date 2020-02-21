@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_19_102349) do
+ActiveRecord::Schema.define(version: 2020_02_21_103025) do
+
+  create_table "companies", force: :cascade do |t|
+    t.string "name"
+    t.string "website"
+    t.string "email"
+    t.integer "company_admin_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["company_admin_id"], name: "index_companies_on_company_admin_id"
+  end
 
   create_table "roles", force: :cascade do |t|
     t.string "name"
@@ -21,6 +31,17 @@ ActiveRecord::Schema.define(version: 2020_02_19_102349) do
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
     t.index ["name"], name: "index_roles_on_name"
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id"
+  end
+
+  create_table "service_centers", force: :cascade do |t|
+    t.string "name"
+    t.string "area"
+    t.string "city"
+    t.string "state"
+    t.string "pincode"
+    t.string "email"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -35,6 +56,8 @@ ActiveRecord::Schema.define(version: 2020_02_19_102349) do
     t.string "lastname"
     t.string "username"
     t.string "contact"
+    t.integer "company_id"
+    t.index ["company_id"], name: "index_users_on_company_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -47,4 +70,5 @@ ActiveRecord::Schema.define(version: 2020_02_19_102349) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  add_foreign_key "users", "companies"
 end
