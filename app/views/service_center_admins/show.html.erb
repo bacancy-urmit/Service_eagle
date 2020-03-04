@@ -21,6 +21,7 @@
     <th scope='row'><%= link_to 'edit',  edit_service_center_admin_path(adminn.id) %></th>
     <th scope='row'><%=  link_to 'delete', service_center_admin_path(adminn.id), :confirm => 'are you sure?', data:{method: :delete} %></th>
 <%end%>
-<%= link_to 'dashbord', super_admins_path %>
+<%= link_to 'dashbord', super_admins_path %><br/><br/>
+<%= link_to 'add service center admin',  new_service_center_admin_path %>
 <%end%>
 </div>

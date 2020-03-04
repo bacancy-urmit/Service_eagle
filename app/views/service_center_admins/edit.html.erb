@@ -1,44 +1,49 @@
 <%if user_signed_in?%>
+<div class= "container">
+<div class= "row">
+<div class= "col-md-6">
 <%=form_with model:@service_center_admin,url: service_center_admin_path,local: true do |f|%>
     
-    <p>
-        <%=f.label :firstname%>
+    <div class= "form-group">
+        <%=f.label :firstname%><br/>
         <%=f.text_field :firstname%>
-    </p>
+    </div>
         
     
-    <p>
-        <%=f.label :laststname%>
+    <div class= "form-group">
+        <%=f.label :laststname%><br/>
         <%=f.text_field :lastname%>
-    </p>
-
+    </div>
     
-    <p>
-        <%=f.label :username%>
+    <div class= "form-group">
+        <%=f.label :username%><br/>
         <%=f.text_field :username%>
-    </p>
-
+    </div>
     
-    <p>
-        <%=f.label :email%>
+    <div class= "form-group">
+        <%=f.label :email%><br/>
         <%=f.text_field :email%>
-    </p>
-
+    </div>
     
-    <p>
-        <%=f.label :contact%>
+    <div class= "form-group">
+        <%=f.label :contact%><br/>
         <%=f.text_field :contact%>
-    </p>
-
-    <p>
-        <%=f.label :password%>
+    </div>
+    <div class= "form-group">
+        <%=f.label :password%><br/>
         <%=f.password_field :password%>
-    </p>
+    </div>
     
-    <p>
-        <%=f.label :password_confirmation%>
+    <div class= "form-group">
+        <%=f.label :password_confirmation%><br/>
         <%=f.password_field :password_confirmation%>
-    </p>
+    </div>
     <%=f.submit "update admin"%>
+<%end%>
+<%else%>
+<h3>Please login!!!!!!!!</h3>
+<h3>If you are new user then sign up</h3>
+<%= link_to 'sign in', new_user_registration_path %>
+<%= link_to 'sign in', new_user_session_path %>
 <%end%>
 <%end%>

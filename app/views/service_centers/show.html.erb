@@ -22,7 +22,9 @@
     <th scope='row'><%=center.pincode%></th>
     <th scope='row'><%=center.email%></th>
     <th scope='row'><%= link_to 'edit',   edit_service_center_path(center.id) %></th>
+    <th><%= link_to 'delete', service_center_path(center.id) %></th>
 <%end%>
 <%= link_to 'dashbord', super_admins_path %>
+
 <%end%>
 </div>

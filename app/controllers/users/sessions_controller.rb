@@ -5,21 +5,24 @@ class Users::SessionsController < Devise::SessionsController
 
   # GET /resource/sign_in
   def new
-   super
+    super
   end
 
   # POST /resource/sign_in
   def create
     #  super
-    if current_user.has_role? :super_admin 
-      # puts "abC"
-      # redirect_to companies_new_path 
-      redirect_to  super_admin_index_path
-    elsif current_user.has_role? :company_admin
-      redirect_to  company_admin_index_path
-    
+    if current_user.nil?
+      redirect_to new_user_registration_path
     else
-      render  "user/userindex"
+      if current_user.has_role? :super_admin
+        redirect_to  super_admins_path
+      elsif current_user.has_role? :company_admin
+        redirect_to  company_admin_index_path
+      elsif current_user.has_role? :servicecenter_admin
+        redirect_to service_center_admins_path
+      else
+        redirect_to root_path
+      end
     end
   end
 
