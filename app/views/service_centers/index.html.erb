@@ -1,0 +1,35 @@
+<%if user_signed_in?%>
+<div class='container'>
+  <%= link_to 'add service center', new_service_center_admin_path %><br /><br />
+  <table class='table'>
+    <thead>
+      <tr>
+        <th scope='col'>service center name</th>
+        <th scope='col'>area</th>
+        <th scope='col'>city</th>
+        <th scope='col'>state</th>
+        <th scope='col'>pincode</th>
+        <th scope='col'>email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%@centers.each do |center|%>
+      <tr>
+        <td scope='row'><%=center.name%></td>
+        <td scope='row'><%=center.city%></td>
+        <td scope='row'><%=center.area%></td>
+        <td scope='row'><%=center.state%></td>
+        <td scope='row'><%=center.pincode%></td>
+        <td scope='row'><%=center.email%></td>
+        <td scope='row'><%= link_to 'edit',   edit_service_center_path(center.id) %></td>
+        <td><%= link_to 'delete', service_center_path(center.id), method: :delete%></td>
+      </tr>
+      <%end%>
+      <%= link_to 'dashbord', super_admins_path %>
+</div>
+<%else%>
+<h3>Please login!!!!!!!!</h3>
+<h3>If you are new user then sign up</h3>
+<%= link_to 'sign in', new_user_registration_path %>
+<%= link_to 'sign in', new_user_session_path %>
+<%end%>

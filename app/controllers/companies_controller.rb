@@ -6,6 +6,10 @@ class CompaniesController < ApplicationController
     @company = Company.new
   end
 
+  def index
+    @companies = Company.all
+  end
+
   def create
     @company = Company.new(company_parameter)
     if @company.save
@@ -18,7 +22,7 @@ class CompaniesController < ApplicationController
   end
 
   def show
-    @companies = Company.all
+    @company = Company.find(params[:id])
   end
 
   def edit
@@ -26,20 +30,20 @@ class CompaniesController < ApplicationController
   end
 
   def update
-    @company = Company.find(paramsa[:id])
-    @company.update(name: params[:company][:name], website: params[:company][:website], email: params[:company][:email])
+    @company = Company.find(params[:id])
+    @company.update(company_parameter)
     flash.alert = 'updated successfully'
-    redirect_to company_path(:id)
+    redirect_to companies_path
   end
 
   def destroy
     @company = Company.find(params[:id])
     @company.destroy
     flash.alert = 'deleted successfully'
-    redirect_to company_path(:id)
+    redirect_to companies_path
   end
 
-    private
+  private
 
   def company_parameter
     params.require(:company).permit(:name, :website, :email)
@@ -48,5 +52,4 @@ class CompaniesController < ApplicationController
   def find_company
     params.require(:company).permit(:email)
   end
-  end
-  
+end

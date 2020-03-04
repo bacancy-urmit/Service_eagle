@@ -5,6 +5,7 @@ class ServiceCenterAdminsController < ApplicationController
   def index
     @date = Date.tomorrow
     @count = ServiceCenterCapacity.find_by('date', Date.tomorrow)
+    @service_center_admin = User.service_center_admins
   end
   
   def new
@@ -35,14 +36,14 @@ class ServiceCenterAdminsController < ApplicationController
   end
 
   def show
-    @service_center_admin = User.service_center_admins
+    @service_center_admin = User.find(params[:id])
   end
 
   def destroy
     @service_center_admin = User.find(params[:id])
     @service_center_admin.destroy
     flash.alert = 'service center admin deleted successfully'
-    redirect_to service_center_admin_path
+    redirect_to service_center_admins_path
   end
 
   private

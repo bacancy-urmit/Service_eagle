@@ -1,11 +1,37 @@
-
 <%if user_signed_in?%>
-    <%=link_to "add spare parts",new_sparepart_path%>
-    <h1>or</h1>
-    <%=link_to "edit profile",edit_user_registration_path%>
-    <h1>or</h1>
-    <%= link_to 'set count',   new_service_center_capacity_path %>
-    <h1>or</h1>
-    <%= link_to 'signout', destroy_user_session_path, method: :delete %>
-
+<%=link_to "add spare parts",new_sparepart_path%><br/><br/>
+<%=link_to "edit profile",edit_user_registration_path%><br/><br/>
+<%= link_to 'set count',   new_service_center_capacity_path %><br/><br/>
+<%= link_to 'signout', destroy_user_session_path, method: :delete %>
+<div class='container'>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th scope='col'>first name</th>
+        <th scope='col'>lastname</th>
+        <th scope='col'>username</th>
+        <th scope='col'>email</th>
+        <th scope='col'>contact</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%@service_center_admin.each do |adminn|%>
+      <tr>
+        <td scope='row'><%=adminn.firstname%></td>
+        <td scope='row'><%=adminn.lastname%></td>
+        <td scope='row'><%=adminn.username%></td>
+        <td scope='row'><%=adminn.email%></td>
+        <td scope='row'><%=adminn.contact%></td>
+        <td scope='row'><%= link_to 'edit',  edit_service_center_admin_path(adminn.id) %></td>
+        <td scope='row'>
+          <%=  link_to 'delete', service_center_admin_path(adminn.id), :confirm => 'are you sure?', data:{method: :delete} %>
+        </td>
+      </tr>
+    </tbody>
+    <%end%>
+<%else%>
+    <h3>Please login!!!!!!!!</h3>
+    <h3>If you are new user then sign up</h3>
+    <%= link_to 'sign in', new_user_registration_path %>
+    <%= link_to 'sign in', new_user_session_path %>
 <%end%>

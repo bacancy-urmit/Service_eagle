@@ -5,6 +5,10 @@ class ServiceCentersController < ApplicationController
     @new_center = ServiceCenter.new
   end
 
+  def index
+    @centers = ServiceCenter.all
+  end
+
   def create
     @new_center = ServiceCenter.new(allowed_parameters)
     if @new_center.save
@@ -15,7 +19,7 @@ class ServiceCentersController < ApplicationController
   end
 
   def show
-    @centers = ServiceCenter.all
+    @center = ServiceCenter.find(params[:id])
   end
 
   def edit
@@ -26,14 +30,14 @@ class ServiceCentersController < ApplicationController
     @center = ServiceCenter.find(params[:id])
     @center.update(area: params[:service_center][:area], city: params[:service_center][:city], state: params[:service_center][:state], pincode: params[:service_center][:pincode], email: params[:service_center][:email])
     flash.alert = 'service center updated successfully'
-    redirect_to service_center_path
+    redirect_to  service_centers_path
   end
 
   def destroy
     @center = ServiceCenter.find(params[:id])
     @center.destroy
     flash.alert = 'service center deleted successfully'
-    redirect_to service_center_path
+    redirect_to  service_centers_path
   end
 
     private

@@ -1,2 +1,28 @@
-<%=link_to 'new company',"companies/new"%>
-<%=link_to 'create admin',new_user_%>
+<%if user_signed_in?%>
+  <div class="container">
+    <%=link_to 'add company',  new_company_path%><br/><br/><br/>
+    <table class='table'>
+    <thead>
+      <tr>
+        <th scope='col'>company name</th>
+        <th scope='col'>website</th>
+        <th scope='col'>email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%@companies.each do |company|%>
+        <tr>
+          <th scope='row'><%=company.name%></th>
+          <th scope='row'><%=company.website%></th>
+          <th scope='row'><%=company.email%></th>
+          <th scope='row'><%= link_to 'edit', edit_company_path(company.id) %></th>
+          <th scope='row'><%= link_to 'delete', company_path(company.id), data:{method: :delete}%></th>
+        </tr>
+      <%end%>
+    </tbody>
+    <%= link_to 'dashbord', super_admins_path %>
+  </div>
+<%else%>
+  <%= link_to 'dashbord', super_admins_path %><br/><br/>
+  <%= link_to 'add service center admin',  new_service_center_admin_path %> 
+<%end%>

@@ -1,27 +1,25 @@
 <%if user_signed_in?%>
-<div class = 'container'>
-<table class='table'>
-<thead>
-  <tr>
-    <th scope='col'>first name</th>
-    <th scope='col'>lastname</th>
-    <th scope='col'>username</th>
-    <th scope='col'>email</th>
-    <th scope='col'>contact</th>
-  </tr>
-</thead>
-<%@service_center_admin.each do |adminn|%>
-<tbody>
-  <tr>
-    <th scope='row'><%=adminn.firstname%></th>
-    <th scope='row'><%=adminn.lastname%></th>
-    <th scope='row'><%=adminn.username%></th>
-    <th scope='row'><%=adminn.email%></th>
-    <th scope='row'><%=adminn.contact%></th>
-    <th scope='row'><%= link_to 'edit',  edit_service_center_admin_path(adminn.id) %></th>
-    <th scope='row'><%=  link_to 'delete', service_center_admin_path(adminn.id), :confirm => 'are you sure?', data:{method: :delete} %></th>
-<%end%>
-<%= link_to 'dashbord', super_admins_path %><br/><br/>
-<%= link_to 'add service center admin',  new_service_center_admin_path %>
-<%end%>
+<div class='container'>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th scope='col'>first name</th>
+        <th scope='col'>lastname</th>
+        <th scope='col'>username</th>
+        <th scope='col'>email</th>
+        <th scope='col'>contact</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td scope='row'><%=adminn.firstname%></td>
+        <td scope='row'><%=adminn.lastname%></td>
+        <td scope='row'><%=adminn.username%></td>
+        <td scope='row'><%=adminn.email%></td>
+        <td scope='row'><%=adminn.contact%></td>
+      </tr>
+    </tbody>
+    <%= link_to 'dashbord', super_admins_path %><br /><br />
+    <%= link_to 'add service center admin',  new_service_center_admin_path %>
 </div>
+<%end%>

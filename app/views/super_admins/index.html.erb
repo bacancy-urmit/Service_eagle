@@ -1,8 +1,13 @@
 <%if user_signed_in?%>
-<%=link_to "edit profile",edit_user_registration_path%><br/><br/>
-<%= link_to 'display companies', company_path(:id)%><br/><br/>
-<%= link_to 'display service centers',   service_center_path(:id) %><br/><br/>
-<%= link_to 'display service center admin', service_center_admin_path(:id) %><br/><br/>
-<%= link_to 'display company admin',  company_admin_path(:id) %><br/><br/>
+<%=link_to "edit profile",edit_user_registration_path%><br /><br />
+<%= link_to 'display companies', companies_path%><br /><br />
+<%= link_to 'display service centers',    service_centers_path %><br /><br />
+<%= link_to 'display service center admin', service_center_admins_path %><br /><br />
+<%= link_to 'display company admin',  company_admin_path(:id) %><br /><br />
 <%= link_to 'signout', destroy_user_session_path, method: :delete  %>
+<%else%>
+<h3>Please login!!!!!!!!</h3>
+<h3>If you are new user then sign up</h3>
+<%= link_to 'sign in', new_user_registration_path %>
+<%= link_to 'sign in', new_user_session_path %>
 <%end%>
