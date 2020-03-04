@@ -1,0 +1,11 @@
+
+<%if current_user%>
+    <%=link_to "add spare parts",new_sparepart_path%>
+    <h1>or</h1>
+    <%=link_to "edit profile",edit_user_registration_path%>
+    <h1>or</h1>
+    <%= link_to 'set count',   new_service_center_capacity_path %>
+    <h1>or</h1>
+    <%=link_to 'signout', destroy_user_session_path, method: :delete%>
+
+<%end%>

@@ -1,0 +1,27 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  vehicle_name: MyString
+  service: MyString
+  service_date: 2020-02-26 17:06:58
+  pickup_date: 2020-02-26 17:06:58
+  special_request: MyString
+  employee_name: MyString
+  drop_time: 2020-02-26 17:06:58
+  pickup_time: 2020-02-26 17:06:58
+  service_status: MyString
+  user: one
+  service_center: one
+
+two:
+  vehicle_name: MyString
+  service: MyString
+  service_date: 2020-02-26 17:06:58
+  pickup_date: 2020-02-26 17:06:58
+  special_request: MyString
+  employee_name: MyString
+  drop_time: 2020-02-26 17:06:58
+  pickup_time: 2020-02-26 17:06:58
+  service_status: MyString
+  user: two
+  service_center: two

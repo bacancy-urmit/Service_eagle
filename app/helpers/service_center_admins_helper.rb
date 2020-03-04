@@ -1,0 +1,2 @@
+module ServiceCenterAdminsHelper
+end

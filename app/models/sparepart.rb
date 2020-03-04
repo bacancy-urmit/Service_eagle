@@ -1,0 +1,2 @@
+class Sparepart < ApplicationRecord
+end

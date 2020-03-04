@@ -1,0 +1,66 @@
+<%if user_signed_in?%>
+<div class= "container">
+<div class= "row">
+<div class= "col-md-6">
+<%=form_with model:@bookappoinment,local: true do |f|%>
+    <%= f.select(:service_center_id, options_from_collection_for_select(ServiceCenter.all, :id, :name), {:class=>'form-control', :prompt => 'Select service center',}) %> <br/><br/>   
+    
+    <div class= "form-group" id="vehicle_type">
+        <%= f.radio_button :vehicle_type, 'two-wheeler'%>two-wheeler
+        <%= f.radio_button :vehicle_type, 'four-wheeler'%>four-wheeler
+    </div>
+
+    <div class= "form-group" id="two_wheeler">
+        <%=f.label :vehicle_name%><br/>
+        <%=f.select(:vehicle_name, options_for_select([['swift','swift'],['inova','inova'],['alto','alto'],['i10','i10']]), { :prompt => 'select your vehicle ',})%>
+        <%=f.select(:vehicle_name, options_for_select([['pulsar','pulsar'],['platina','platina'],['access','access'],['splender','splender']]), { :prompt => 'select your vehicle ',})%>
+    </div>
+
+    <div class= "form-group">
+        <%=f.label :service%><br/>
+        <%=f.select(:service, options_for_select([['first(free)','firstfree'],['second(free)','secondfree'],['third(free)','thirdfree'],['paid','paid']]), { :prompt => 'select your service type',})%>
+    </div>
+
+    <div class= "form-group">
+        <%=f.label :servicedate%><br/>
+        <%=f.date_field :service_date, class: "form-control", placeholder: "dd/mm/yyyy", min: Date.today%>
+    </div>
+
+    <div class= "form-group">
+        <%=f.label :pickupdate%><br/>
+        <%=f.date_field :pickup_date, class: "form-control", placeholder: "dd/mm/yyyy", min: Date.today%>
+    </div>
+
+    <div class= "form-group">
+        <%=f.label :description%><br/>
+        <%=f.text_area :special_request, class: "form-control", placeholder: "any special thing that you want to point out or any special request"%>
+    </div>
+
+    <div class= "form-group">
+        <%= f.label :employeename %><br/>
+        <%=f.text_field :employee_name, class: "form-control", placeholder: "your preferable employee"%>
+    </div>
+
+    <div class= "form-group">
+        <%=f.label :droptime%><br/>
+        <%=f.datetime_field :drop_time, class: "form-control",  placeholder: "%H:%M:%s"%>
+    </div>
+    
+    <div class= "form-group">
+        <%=f.label :pickuptime%><br/>
+        <%=f.datetime_field :pickup_time, class: "form-control"   ,placeholder: "%H:%M"%>
+    </div>
+    <%=f.submit  class: "btn btn-primary"%>
+    <br/>
+    <br/>
+    <%= link_to 'go back', root_path%>
+<%end%>
+</div>
+</div>
+</div>
+<%else%>
+<h3>Please login!!!!!!!!</h3>
+<h3>If you are new user then sign up</h3>
+<%= link_to 'sign in', new_user_registration_path %>
+<%= link_to 'sign in', new_user_session_path %>
+<%end%>

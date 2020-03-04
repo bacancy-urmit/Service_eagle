@@ -1,0 +1,2 @@
+module ServiceCenterCapacitiesHelper
+end

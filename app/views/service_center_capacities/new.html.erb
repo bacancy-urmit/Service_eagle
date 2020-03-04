@@ -1,0 +1,29 @@
+<%if current_user%>
+<div class= "container">
+<div class= "row">
+<div class= "col-md-6">
+<%=form_with model:@set_count, local: true do |f|%>
+    <div class= "form-group">
+        <%=f.label :servicecount%>
+        <%=f.number_field :count, class: "form-control" %>
+    </div>
+
+    <div class= "form-group">
+        <%=f.label :date%>
+        <%=f.date_field :date, min: Date.tomorrow,class: "form-control" %>
+    </div>
+
+    <div class= "form-group">
+        <%=f.submit class: "btn btn-primary"%>
+    </div>
+
+<%end%>
+</div>
+</div>
+</div>
+<%else%>
+<h3>Please login!!!!!!!!</h3>
+<h3>If you are new user then sign up</h3>
+<%= link_to 'sign in', new_user_registration_path %>
+<%= link_to 'sign in', new_user_session_path %>
+<%end%> 
