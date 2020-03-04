@@ -1,0 +1,22 @@
+<%if user_signed_in?%>
+<div class="container">
+<%=link_to 'add company',  new_company_path%><br/><br/><br/>
+<table class='table'>
+<thead>
+  <tr>
+    <th scope='col'>company name</th>
+    <th scope='col'>website</th>
+    <th scope='col'>email</th>
+  </tr>
+</thead>
+<%@companies.each do |company|%>
+<tbody>
+  <tr>
+    <th scope='row'><%=company.name%></th>
+    <th scope='row'><%=company.website%></th>
+    <th scope='row'><%=company.email%></th>
+    <th scope='row'><%= link_to 'edit',  edit_company_path(company.id) %></th>
+    <th scope='row'><%= link_to 'delete',   company_path(company.id), data:{method: :delete}%></th>
+<%end%>
+<%= link_to 'dashbord', super_admins_path %>
+<%end%></div>
