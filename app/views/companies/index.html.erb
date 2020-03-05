@@ -1,4 +1,4 @@
-<%if user_signed_in?%>
+<%if user_signed_in? and current_user.has_role? :super_admin%>
   <div class="container">
     <%=link_to 'add company',  new_company_path%><br/><br/><br/>
     <table class='table'>
@@ -23,6 +23,8 @@
     <%= link_to 'dashbord', super_admins_path %>
   </div>
 <%else%>
-  <%= link_to 'dashbord', super_admins_path %><br/><br/>
-  <%= link_to 'add service center admin',  new_service_center_admin_path %> 
+<h3>Please login!!!!!!!!</h3>
+<h3>If you are new user then sign up</h3>
+<%= link_to 'sign in', new_user_registration_path %>
+<%= link_to 'sign in', new_user_session_path %> 
 <%end%>

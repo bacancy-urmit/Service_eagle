@@ -8,6 +8,7 @@ class AppoinmentBookingsController < ApplicationController
             else
               AppoinmentBooking::Four_wheeler
             end
+            @bookedappoinment = AppoinmentBooking.where(user_id: params[:id])
   end
 
   def new
@@ -19,10 +20,11 @@ class AppoinmentBookingsController < ApplicationController
     @bookappoinment.user_id = current_user.id
     # @bookappoinment.appoinment_booking.build(service_center_id: params[:service_center_id])
     if @bookappoinment.save
-      render :success
+      flash.alert = 'your appoinment is saved'
     else
-      render :error
+      flash.alert = 'your appoinment is not saved'
     end
+    redirect_to root_path
   end
 
   def show
@@ -33,11 +35,18 @@ class AppoinmentBookingsController < ApplicationController
     @bookappoinment = AppoinmentBooking.find(params[:id])
   end
 
+  def update
+    @bookedappoinment = AppoinmentBooking.(params[:id])
+    @bookedappoinment.update(allowed_parameter)
+    flash.alert = 'appoinment is updated'
+    redirect_to appoinment_booking_path(current_user.id)
+  end
+
   def destroy
     @bookappoinment = AppoinmentBooking.find(params[:id])
     @bookappoinment.destroy
     flash.alert = 'appoinment deleted'
-    redirect_to show_path(current_user.id)
+    redirect_to appoinment_booking_path(current_user.id)
   end
 
   private

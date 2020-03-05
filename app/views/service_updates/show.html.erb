@@ -1,0 +1,30 @@
+<%if user_signed_in?%>
+<div class="container">
+  <table class='table'>
+    <thead>
+      <tr>
+        <th scope='col'>booking id</th>
+        <th scope='col'>status</th>
+        <th scope='col'>description</th>
+        <th scope='col'>estimation</th>
+        <th scope='col'>date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td scope='row'><%= @appoinment.token %></td>
+        <td scope='row'><%= @update.service_status %></td>
+        <td scope='row'><%= @update.description%></td>
+        <td scope='row'><%= @update.estimation%></td>
+        <td scope='row'><%= @update.created_at%></td>
+        <td scope='row'><%= link_to 'edit', edit_service_update_path(@update.id) %>
+      </tr>
+    </tbody>
+  </table>
+  <%else%>
+  <h3>Please login!!!!!!!!</h3>
+  <h3>If you are new user then sign up</h3>
+  <%= link_to 'sign in', new_user_registration_path %>
+  <%= link_to 'sign in', new_user_session_path %>
+</div>
+<%end%>

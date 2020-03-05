@@ -15,4 +15,5 @@ Rails.application.routes.draw do
   resources :service_center_capacities
   resources :service_center_admins
   resources :spareparts
+  resources :service_updates
 end

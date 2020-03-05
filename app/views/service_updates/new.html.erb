@@ -1,0 +1,38 @@
+<%if user_signed_in?%>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <%=form_with model:@update do |f|%>
+      <div class="form-group" id="two_wheeler">
+        <%=f.label :bookingid%><br />
+        <%=text_field_tag :bookingid %>
+      </div>
+
+      <div class="form-group" id="two_wheeler">
+        <%=f.label :description%><br />
+        <%=f.text_field :description %>
+      </div>
+
+      <div class="form-group" id="two_wheeler">
+        <%=f.label :status%><br />
+        <%=f.text_field :service_status %>
+      </div>
+
+      <div class="form-group" id="two_wheeler">
+        <%=f.label :estimation%><br />
+        <%=f.text_field :estimation %>
+      </div>
+
+      <%=f.submit  class: "btn btn-primary"%>
+      <br />
+      <br />
+      <%end%>
+    </div>
+  </div>
+</div>
+<%else%>
+<h3>Please login!!!!!!!!</h3>
+<h3>If you are new user then sign up</h3>
+<%= link_to 'sign in', new_user_registration_path %>
+<%= link_to 'sign in', new_user_session_path %>
+<%end%>

@@ -7,7 +7,7 @@ class ServiceCenterAdminsController < ApplicationController
     @count = ServiceCenterCapacity.find_by('date', Date.tomorrow)
     @service_center_admin = User.service_center_admins
   end
-  
+
   def new
     @user = User.new
   end
@@ -33,6 +33,13 @@ class ServiceCenterAdminsController < ApplicationController
 
   def edit
     @service_center_admin = User.find(params[:id])
+  end
+
+  def update
+    @service_center_admin = User.find(params[:id])
+    @service_center_admin.update(allowed_parameters)
+    flash.alert = 'admin record is updated'
+    redirect_to service_center_admins_path
   end
 
   def show
