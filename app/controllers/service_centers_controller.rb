@@ -11,11 +11,12 @@ class ServiceCentersController < ApplicationController
 
   def create
     @new_center = ServiceCenter.new(allowed_parameters)
-    if @new_center.save
-      render :success
-    else
-      render :error
-    end
+    flash.alert = if @new_center.save
+        "service ceneter creataed succefully"
+      else
+        "service center is not created"
+      end
+    redirect_to service_centers_path
   end
 
   def show
@@ -28,21 +29,21 @@ class ServiceCentersController < ApplicationController
 
   def update
     @center = ServiceCenter.find(params[:id])
-    @center.update(area: params[:service_center][:area], city: params[:service_center][:city], state: params[:service_center][:state], pincode: params[:service_center][:pincode], email: params[:service_center][:email])
-    flash.alert = 'service center updated successfully'
-    redirect_to  service_centers_path
+    @center.update(allowed_parameters)
+    flash.alert = "service center updated successfully"
+    redirect_to service_centers_path
   end
 
   def destroy
     @center = ServiceCenter.find(params[:id])
     @center.destroy
-    flash.alert = 'service center deleted successfully'
-    redirect_to  service_centers_path
+    flash.alert = "service center deleted successfully"
+    redirect_to service_centers_path
   end
 
-    private
+  private
 
   def allowed_parameters
     params.require(:service_center).permit(:name, :area, :city, :state, :pincode, :email)
   end
-  end
+end

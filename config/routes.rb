@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   }
   resources :super_admins
   resources :company_admin
-  resources :appoinment_bookings
+  resources :booked_appointments
   resources :companies
   resources :service_centers
   resources :service_center_capacities

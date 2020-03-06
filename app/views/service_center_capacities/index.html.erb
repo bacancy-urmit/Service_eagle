@@ -1,0 +1,27 @@
+<% if user_signed_in? %>
+<div class='container'>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th scope='col'>service center name</th>
+        <th scope='col'>count</th>
+        <th scope='col'>date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%@counts.each do |count|%>
+      <tr>
+        <td scope='row'><%=count.name%></td>
+        <td scope='row'><%=count.count%></td>
+        <td scope='row'><%=count.date%></td>
+        <td scope='row'><%= link_to 'edit',   edit_service_center_capacity_path(count.id) %></td>
+      </tr>
+      <%end%>
+    </tbody>
+</div>
+<%else%>
+<h3>Please login!!!!!!!!</h3>
+<h3>If you are new user then sign up</h3>
+<%= link_to 'sign in', new_user_registration_path %>
+<%= link_to 'sign in', new_user_session_path %>
+<%end%>

@@ -1,41 +1,41 @@
-<%if current_user%>
+<% if current_user %>
 <div class="container">
   <div class="row">
     <div class="col-md-6">
-<%=form_with model:@new_center, url: servicecenters_path,local: true do |f|%>
+<%= form_with model: @new_center, url: servicecenters_path, local: true do |f| %>
     <div class="form-group">
-        <%=f.label :name%>
-        <%=f.text_field :name ,placeholder: "petal honda"%>
+        <%= f.label :name %>
+        <%= f.text_field :name, placeholder: "petal honda" %>
     </div>
 
     <div class="form-group">
-        <%=f.label :area%><br/>
-        <%=f.text_field :area ,placeholder: "maninagar"%>
+        <%= f.label :area %><br/>
+        <%= f.text_field :area, placeholder: "maninagar" %>
     </div>
 
     <div class="form-group">
-        <%=f.label :city%><br/>
-        <%=f.text_field :city ,placeholder: "ahmedabad"%>
+        <%= f.label :city %><br/>
+        <%= f.text_field :city, placeholder: "ahmedabad" %>
     </div>
 
     <div class="form-group">
-        <%=f.label :state%><br/>
-        <%=f.text_field :state ,placeholder: "gujrat"%>
+        <%= f.label :state %><br/>
+        <%= f.text_field :state, placeholder: "gujrat" %>
     </div>
 
     <div class="form-group">
-        <%=f.label :pincode%><br/>
-        <%=f.text_field :pincode ,placeholder: "380008"%>
+        <%= f.label :pincode %><br/>
+        <%= f.text_field :pincode, placeholder: "380008" %>
     </div>
     
     <div class="form-group">
-        <%=f.label :email%><br/>
-        <%=f.text_field :email ,placeholder: "petal.servicecenter@honda.com"%>
+        <%= f.label :email %><br/>
+        <%= f.text_field :email, placeholder: "petal.servicecenter@honda.com" %>
     </div>
-    <%=f.submit class: "btn btn-primary"%>
-<%end%>
+    <%= f.submit class: "btn btn-primary" %>
+<% end %>
 <h3>Please login!!!!!!!!</h3>
 <h3>If you are new user then sign up</h3>
-<%= link_to 'sign in', new_user_registration_path %>
-<%= link_to 'sign in', new_user_session_path %>
-<%end%>
+<%= link_to "sign in", new_user_registration_path %>
+<%= link_to "sign in", new_user_session_path %>
+<% end %>

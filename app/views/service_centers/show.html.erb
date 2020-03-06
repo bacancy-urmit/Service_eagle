@@ -1,6 +1,6 @@
-<%if user_signed_in?%>
+<% if user_signed_in? %>
 <div class='container'>
-  <%= link_to 'add service center', new_service_center_admin_path %><br /><br />
+  <%= link_to "add service center", new_service_center_admin_path %><br /><br />
   <table class='table'>
     <thead>
       <tr>
@@ -14,14 +14,14 @@
     </thead>
     <tbody>
       <tr>
-        <td scope='row'><%=@center.name%></td>
-        <td scope='row'><%=@center.city%></td>
-        <td scope='row'><%=@center.area%></td>
-        <td scope='row'><%=@center.state%></td>
-        <td scope='row'><%=@center.pincode%></td>
-        <td scope='row'><%=@center.email%></td>
-        <%= link_to 'dashbord', super_admins_path %>
+        <td scope='row'><%= @center.name %></td>
+        <td scope='row'><%= @center.city %></td>
+        <td scope='row'><%= @center.area %></td>
+        <td scope='row'><%= @center.state %></td>
+        <td scope='row'><%= @center.pincode %></td>
+        <td scope='row'><%= @center.email %></td>
+        <%= link_to "dashbord", super_admins_path %>
       </tr>
     </tbody>
 </div>
-<%end%>
+<% end %>

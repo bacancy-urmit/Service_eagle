@@ -1,4 +1,4 @@
-<%if user_signed_in?%>
+<% if user_signed_in? %>
 <h3>admin is not created try again</h3>
-<%=link_to 'add company admin', new_super_admin_path %>
-<%end%>
+<%= link_to "add company admin", new_super_admin_path %>
+<% end %>

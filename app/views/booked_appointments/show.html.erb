@@ -1,0 +1,48 @@
+<% if user_signed_in? %>
+  <div class='container'>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th scope='col'>boking id</th>
+          <th scope='col'>vehicle name</th>
+          <th scope='col'>service</th>
+          <th scope='col'>service date</th>
+          <th scope='col'>pickup date</th>
+          <th scope='col'>special request</th>
+          <th scope='col'>employee name</th>
+          <th scope='col'>drop time</th>
+          <th scope='col'>pickup time</th>
+          <th scope='col'>service status</th>
+          <th scope='col'>service center</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @booked_appoinment.each do |appoinment| %>
+          <% @servicecenter = ServiceCenter.find(appoinment.service_center_id) %>
+          <tr>
+            <td scope='row'><%= appoinment.token %></td>
+            <td scope='row'><%= appoinment.vehicle_name %></td>
+            <td scope='row'><%= appoinment.service %></td>
+            <td scope='row'><%= appoinment.service_date %></td>
+            <td scope='row'><%= appoinment.pickup_date %></td>
+            <td scope='row'><%= appoinment.special_request %></td>
+            <td scope='row'><%= appoinment.employee_name %></td>
+            <td scope='row'><%= appoinment.drop_time %></td>
+            <td scope='row'><%= appoinment.pickup_time %></td>
+            <td scope='row'><%= appoinment.service_status %></td>
+            <td scope='row'><%= @servicecenter.name %></td>
+            <td scope='row'><%= link_to "edit", edit_booked_appoinment_path(appoinment.id) %></td>
+            <td scope='row'><%= link_to "show updates", booked_appoinment_path(appoinment.id) %></td>
+            <td scope='row'><%= link_to "delete", booked_appoinment_path(appoinment.id), data: { method: :delete } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <%= link_to "dashbord", root_path %>
+<% else %>
+  <h3>Please login!!!!!!!!</h3>
+  <h3>If you are new user then sign up</h3>
+  <%= link_to "sign in", new_user_registration_path %>
+  <%= link_to "sign in", new_user_session_path %>
+<% end %>

@@ -12,13 +12,12 @@ class CompaniesController < ApplicationController
 
   def create
     @company = Company.new(company_parameter)
-    if @company.save
-      flash.alert = 'company created successfully'
-      redirect_to company_path(:id)
-    else
-      flash.alert = 'company created successfully'
-      redirect_to company_path(:id)
-    end
+    flash.alert = if @company.save
+                    'company created successfully'
+                  else
+                    'company created successfully'
+      end
+    redirect_to company_path(@company)
   end
 
   def show
@@ -45,11 +44,7 @@ class CompaniesController < ApplicationController
 
   private
 
-  def company_parameter
+  def allowed_parameter
     params.require(:company).permit(:name, :website, :email)
-  end
-
-  def find_company
-    params.require(:company).permit(:email)
   end
 end

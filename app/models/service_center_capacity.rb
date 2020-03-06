@@ -1,17 +1,14 @@
 # frozen_string_literal: true
 
 class ServiceCenterCapacity < ApplicationRecord
-  def new
-    @set_count = ServiceCenterCapacity.new
-  end
-
-  def create
-    @set_count = ServiceCenterCapacity.new(allowed_parameters)
-  end
+  before_create :check_count_exist
 
   private
-  def allowed_parameters
-    params.require(:setcount).permit(:servicecount, :date)
-    byebug
+
+  def check_count_exist
+    if ServiceCenterCapacity.exists?(date: self.date)
+      # flash[:notice]  = 'count already created'
+      return false
+    end
   end
 end

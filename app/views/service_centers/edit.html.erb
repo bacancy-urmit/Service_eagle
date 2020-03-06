@@ -1,52 +1,52 @@
-<%if current_user%>
+<% if user_signed_in? %>
 
 <div class="container">
   <div class="row">
     <div class="col-md-6">
-      <%=form_with model:@center,local: true do |f|%>
+      <%= form_with model: @center, local: true do |f| %>
       <div class="form-group">
-        <%=f.label :name%><br />
-        <%=f.text_field :name, class: "form-control"%>
+        <%= f.label :name %><br />
+        <%= f.text_field :name, class: "form-control" %>
       </div>
 
 
       <div class="form-group">
-        <%=f.label :area%><br/>
-        <%=f.text_field :area, class: "form-control"%>
+        <%= f.label :area %><br/>
+        <%= f.text_field :area, class: "form-control" %>
       </div>
 
 
       <div class="form-group">
-        <%=f.label :city%><br/>
-        <%=f.text_field :city, class: "form-control"%>
+        <%= f.label :city %><br/>
+        <%= f.text_field :city, class: "form-control" %>
       </div>
 
 
       <div class="form-group">
-        <%=f.label :state%><br/>
-        <%=f.text_field :state, class: "form-control"%>
+        <%= f.label :state %><br/>
+        <%= f.text_field :state, class: "form-control" %>
       </div>
 
 
       <div class="form-group">
-        <%=f.label :pincode%><br/>
-        <%=f.text_field :pincode,  class: "form-control"%>
+        <%= f.label :pincode %><br/>
+        <%= f.text_field :pincode, class: "form-control" %>
       </div>
 
 
       <div class="form-group">
-        <%=f.label :email%><br/>
-        <%=f.text_field :email, class: "form-control"%>
+        <%= f.label :email %><br/>
+        <%= f.text_field :email, class: "form-control" %>
       </div>
 
-      <%=f.submit  class: "btn btn-primary"%>
-      <%end%>
+      <%= f.submit class: "btn btn-primary" %>
+      <% end %>
     </div>
   </div>
 </div>
-<%else%>
+<% else %>
 <h3>Please login!!!!!!!!</h3>
 <h3>If you are new user then sign up</h3>
-<%= link_to 'sign in', new_user_registration_path %>
-<%= link_to 'sign in', new_user_session_path %>
-<%end%>
+<%= link_to "sign in", new_user_registration_path %>
+<%= link_to "sign in", new_user_session_path %>
+<% end %>

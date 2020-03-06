@@ -1,43 +1,43 @@
-<%if user_signed_in?%>  
+<% if user_signed_in? %>  
 <div class= "container">
 <div class= "row">
 <div class= "col-md-6"> 
-<%=form_with model:@newsparep, ocal: true do |f|%>
+<%= form_with model: @newsparep, ocal: true do |f| %>
     
   <div class= "form-group"> 
-  <%=f.label :vehiclename%>
-  <%=f.text_field :vehicle_name, class: "form-control"%>
+  <%= f.label :vehiclename %>
+  <%= f.text_field :vehicle_name, class: "form-control" %>
   </div>
 
   <div class= "form-group"> 
-  <%=f.label :sparepartname%>
-  <%=f.text_field :sparepart_name, class: "form-control"%>
+  <%= f.label :sparepartname %>
+  <%= f.text_field :sparepart_name, class: "form-control" %>
   </div>
 
   <div class= "form-group"> 
-  <%=f.label :price%>
-  <%=f.number_field :price, min: 0, class: "form-control"%>
+  <%= f.label :price %>
+  <%= f.number_field :price, min: 0, class: "form-control" %>
   </div>
 
   <div class= "form-group"> 
-  <%=f.label :quantity%>
-  <%=f.number_field :quantity, min: 0, class: "form-control"%>
+  <%= f.label :quantity %>
+  <%= f.number_field :quantity, min: 0, class: "form-control" %>
   </div>
 
   <div class= "form-group"> 
-  <%=f.label :manufactured_year%>
-  <%=f.date_field :manufactured_y, max: Date.today, class: "form-control"%>
+  <%= f.label :manufactured_year %>
+  <%= f.date_field :manufactured_y, max: Date.today, class: "form-control" %>
   </div>
 
-  <%=f.submit class: "btn btn-primary"%>
+  <%= f.submit class: "btn btn-primary" %>
     <br />
-    <br/> <%=link_to "go back", service_center_admins_path%>
-    <%end%>
+    <br/> <%= link_to "go back", service_center_admins_path %>
+    <% end %>
   </div>
   </div>
   </div>
-  <%else%>
+  <% else %>
 <h3>Please login!!!!!!!</h3>
-<h3>If you are new user then sign up</h3> <%= link_to 'sign up' , new_user_registration_path %> 
-<%= link_to 'sign in', new_user_session_path %>  
-<%end%>
+<h3>If you are new user then sign up</h3> <%= link_to "sign up", new_user_registration_path %> 
+<%= link_to "sign in", new_user_session_path %>  
+<% end %>

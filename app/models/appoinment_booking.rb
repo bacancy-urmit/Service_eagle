@@ -4,7 +4,7 @@ class AppoinmentBooking < ApplicationRecord
   before_create :set_token
   belongs_to :user
   belongs_to :service_center
-  has_many :service_updates
+  has_many :service_updates, dependent: :destroy
   Two_wheeler = %w[bike activa Other].freeze
   Four_wheeler = %w[truck car Other].freeze
 
