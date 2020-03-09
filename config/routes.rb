@@ -16,4 +16,7 @@ Rails.application.routes.draw do
   resources :service_center_admins
   resources :spareparts
   resources :service_updates
+  resources :used_spareparts do
+    get 'search', to: 'used_spareparts#search'
+  end
 end

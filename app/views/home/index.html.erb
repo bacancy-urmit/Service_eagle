@@ -1,11 +1,9 @@
 <% if user_signed_in? %>
-  <%= link_to 'book appointment', new_booked_appointment_path %><br/>
-  <br/>
-  <%= link_to 'show appointment',  booked_appointment_path(current_user.id)%><br/>
+  <%= link_to 'book appointment', booked_appointments_path %><br/>
   <br/>
   <%= link_to 'edit', edit_user_registration_path %><br/>
   <br/>
-  <%= link_to 'signout', destroy_user_session_path, method: :delete %>
+  <%= link_to 'sign out', destroy_user_session_path,method: :deletes %>
 <%else%>
   <%=link_to 'signup', new_user_registration_path %>
   <%=link_to 'signin', new_user_session_path%>

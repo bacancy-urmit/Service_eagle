@@ -1,0 +1,19 @@
+<% if user_signed_in? %>
+  <div class='container'>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th scope='col'>is_payment_received</th>
+          <th scope='col'>service_charge</th>
+          <th scope='col'>total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td scope='row'><%= payment.is_payment_received %></td>
+          <td scope='row'><%= payment.service_charge %></td>
+          <td scope='row'><%= payment.total %></td>
+        </tr>
+      </tbody>
+    </div>
+  <% end %>

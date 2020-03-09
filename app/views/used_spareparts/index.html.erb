@@ -1,0 +1,33 @@
+<div class='container'>
+  <%= form_tag used_spareparts_path, :method => "get" do%>
+    <div class="form-group">
+      <%= label_tag(:booking_id, "enter booking id")  %><br/>
+      <%= text_field_tag :booking_id%>
+      <%= submit_tag "search" ,class: "btn btn-primary"%>
+    </div>
+  <%end%>
+  <%= link_to 'add sparepart', new_used_sparepart_path %>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th scope='col'>bokking id</th>
+        <th scope='col'>quantity</th>
+        <th scope='col'>vehicle name</th>
+        <th scope='col'>sparepart name</th>
+        <th scope='col'>price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%@used_spareparts.each do |f|%>
+        <tr>
+          <td scope='row'><%=@booked_appointment.token%></td>
+          <td scope='row'><%=f.quantity%></td>
+          <td scope='row'><%=@sparepart.vehicle_name%></td>
+          <td scope='row'><%=@sparepart.sparepart_name%></td>
+          <td scope='row'><%=@sparepart.price%></td>
+          <td scope='row'><%= link_to 'edit', edit_used_sparepart_path(f.id) %>
+            <td scope='row'><%= link_to 'delete', used_sparepart_path(f.id),method: :delete %>
+            </tr>
+          <%end%>
+        </tbody>
+      </div>

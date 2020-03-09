@@ -1,0 +1,32 @@
+<% if user_signed_in? %>
+  <div class='container'>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th scope='col'>bokking id</th>
+          <th scope='col'>quantity</th>
+          <th scope='col'>vehicle name</th>
+          <th scope='col'>sparepart name</th>
+          <th scope='col'>price</th>
+          <th scope='col'>manufactured year</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td scope='row'><%=appoinment.booking%></td>
+          <td scope='row'><%=sparepart.quantity%></td>
+          <td scope='row'><%=sparepart.vehicle_name%></td>
+          <td scope='row'><%=sparepart.sparepart_name%></td>
+          <td scope='row'><%=sparepart.price%></td>
+          <td scope='row'><%=sparepart.manufactured_year%></td>
+          <td><%= link_to 'edit', edit_used_sparepart_path(sparepart.id) %></td>
+          <td><%= link_to 'delete', used_sparepart_path(sparepart.id),method: :delete %></td>
+        </tr>
+      </tbody>
+    </div>
+  <%else%>
+    <h3>Please login!!!!!!!!</h3>
+    <h3>If you are new user then sign up</h3>
+    <%= link_to "sign in", new_user_registration_path %>
+    <%= link_to "sign in", new_user_session_path %>
+  <%end%>

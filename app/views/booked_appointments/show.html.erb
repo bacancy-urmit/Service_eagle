@@ -31,9 +31,9 @@
             <td scope='row'><%= appoinment.pickup_time %></td>
             <td scope='row'><%= appoinment.service_status %></td>
             <td scope='row'><%= @servicecenter.name %></td>
-            <td scope='row'><%= link_to "edit", edit_booked_appoinment_path(appoinment.id) %></td>
-            <td scope='row'><%= link_to "show updates", booked_appoinment_path(appoinment.id) %></td>
-            <td scope='row'><%= link_to "delete", booked_appoinment_path(appoinment.id), data: { method: :delete } %></td>
+            <td scope='row'><%= link_to "edit", edit_booked_appointment_path(appoinment.id) %></td>
+            <td scope='row'><%= link_to "show updates", booked_appointment_path(appoinment.id) %></td>
+            <td scope='row'><%= link_to "delete", booked_appointment_path(appoinment.id), data: { method: :delete } %></td>
           </tr>
         <% end %>
       </tbody>

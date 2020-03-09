@@ -1,12 +1,10 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
-  def after_sign_in_path_for(resource)
-    byebug
+  def after_sign_in_path_for(_resource)
     if current_user.nil?
       new_user_registration_path
     else
-      byebug
       if current_user.has_role? :super_admin
         super_admins_path
       elsif current_user.has_role? :company_admin
@@ -14,7 +12,7 @@ class ApplicationController < ActionController::Base
       elsif current_user.has_role? :servicecenter_admin
         service_center_admins_path
       else
-        root_path
+        booked_appointments_path
       end
     end
   end

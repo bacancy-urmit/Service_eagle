@@ -3,6 +3,8 @@
 class User < ApplicationRecord
   rolify
   has_one :user_servicecenter
+  has_many :booked_appointments, dependent: :destroy
+  has_many :servicecenters, through: :booked_appointments
   has_many :user_servicecenters, dependent: :destroy
   has_many :servicecenters, through: :user_servicecenters
   has_many :company_admins, dependent: :destroy
