@@ -16,7 +16,8 @@ Rails.application.routes.draw do
   resources :service_center_admins
   resources :spareparts
   resources :service_updates
-  resources :used_spareparts do
-    get 'search', to: 'used_spareparts#search'
+  resources :used_spareparts
+  resources :invoices do
+    get 'generate_invoice', to: 'invoices#generate_invoice', as: 'generate_invoice'
   end
 end

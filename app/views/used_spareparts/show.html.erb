@@ -8,19 +8,17 @@
           <th scope='col'>vehicle name</th>
           <th scope='col'>sparepart name</th>
           <th scope='col'>price</th>
-          <th scope='col'>manufactured year</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td scope='row'><%=appoinment.booking%></td>
-          <td scope='row'><%=sparepart.quantity%></td>
-          <td scope='row'><%=sparepart.vehicle_name%></td>
-          <td scope='row'><%=sparepart.sparepart_name%></td>
-          <td scope='row'><%=sparepart.price%></td>
-          <td scope='row'><%=sparepart.manufactured_year%></td>
-          <td><%= link_to 'edit', edit_used_sparepart_path(sparepart.id) %></td>
-          <td><%= link_to 'delete', used_sparepart_path(sparepart.id),method: :delete %></td>
+          <td scope='row'><%=@booked_appointment.token%></td>
+          <td scope='row'><%=@sparepart.quantity%></td>
+          <td scope='row'><%=@booked_appointment.vehicle_name%></td>
+          <td scope='row'><%=@sparepart.sparepart_name%></td>
+          <td scope='row'><%=@sparepart.price%></td>
+          <td><%= link_to 'edit', edit_used_sparepart_path(@sparepart.id) %></td>
+          <td><%= link_to 'delete', used_sparepart_path(@sparepart.id),method: :delete %></td>
         </tr>
       </tbody>
     </div>

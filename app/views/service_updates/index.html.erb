@@ -1,5 +1,13 @@
 <% if user_signed_in? %>
   <div class="container">
+    <%= form_tag service_updates_path, :method => "get" do %>
+      <div class="form-group">
+        <%= label_tag(:booking_id, "enter booking id") %><br/>
+        <%= text_field_tag :booking_id %>
+        <%= submit_tag "search", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+    <%= link_to "add update", new_service_update_path %>
     <table class='table'>
       <thead>
         <tr>
@@ -7,15 +15,17 @@
           <th scope='col'>status</th>
           <th scope='col'>description</th>
           <th scope='col'>estimation</th>
+          <th scope='col'>date</th>
         </tr>
       </thead>
       <tbody>
         <% @updates.each do |update| %>
           <tr>
             <td scope='row'><%= update.token %></td>
-            <td scope='row'><%= update.status %></td>
+            <td scope='row'><%= update.service_status %></td>
             <td scope='row'><%= update.description %></td>
             <td scope='row'><%= update.estimation %></td>
+            <td scope='row'><%= update.created_at %></td>
           </tr>
         <% end %>
       </tbody>

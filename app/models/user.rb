@@ -2,6 +2,12 @@
 
 class User < ApplicationRecord
   rolify
+  validates :lastname, presence: true, if: :firstname_precent?
+  validates :firstname, presence: true, messgae: 'First latter should must be presence'
+  validates :lastname, presence: true, messgae: 'First latter should must be presence'
+  validates :email, presence: true, uniqueness: true, format: { with: /[a-z]+[\.]?[a-z]+[0-9]*\@[a-z]+.com/, message: 'Email should be unique or valid!' }
+  validates :password, presence: true, confirmation: true
+  validates :password_confirmation, presence: true
   has_one :user_servicecenter
   has_many :booked_appointments, dependent: :destroy
   has_many :servicecenters, through: :booked_appointments

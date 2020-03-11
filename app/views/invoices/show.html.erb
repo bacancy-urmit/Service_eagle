@@ -1,0 +1,97 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body p-0">
+          <div class="row p-5">
+            <div class="col-md-6">
+              <img src="http://via.placeholder.com/400x90?text=logo">
+            </div>
+            <div class="col-md-6 text-right">
+              <p class="font-weight-bold mb-1">Invoice</p>
+              <p class="text-muted">Due to: <%= Date.today %></p>
+
+
+              <hr class="my-5">
+
+              <div class="row pb-5 p-5">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <p class="font-weight-bold mb-4">From</p>
+              <p class="mb-1"><strong><%= @service_center.name %></strong></p>
+              <p class="mb-1"><%= @service_center.area %></p>
+              <p class="mb-1"><%= @service_center.city %>,<%= @service_center.pincode %></p>
+              <p class="mb-1"><%= @service_center.email %></p>
+            </div>
+            <div class="col-md-6 text-right">
+              <p class="font-weight-bold mb-4">Client information</p>
+              <p class="mb-1"><span class="text-muted">NAME: </span><%= @appointment.username %></p>
+              <p class="mb-1"><span class="text-muted">EMAIL:: </span><%= @appointment.email %></p>
+              <p class="mb-1"><span class="text-muted">contact </span> <%= @appointment.contact %></p>
+            </div>
+          </div>
+          <div class="row p-5">
+            <div class="col-md-12">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope='col'>booking id</th>
+                    <th scope='col'>vehicle name</th>
+                    <th scope='col'>sparepart name</th>
+                    <th scope='col'>service</th>
+                    <th scope='col'>serviced date</th>
+                    <th scope='col'>quantity</th>
+                    <th scope='col'>price/ps</th>
+                    <th scope='col'>total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @used_spareparts.each do |sparepart| %>
+                  <tr>
+                    <td scope='row'><%= @appointment.token %></td>
+                    <td scope='row'><%= @appointment.vehicle_name %></td>
+                    <td scope='row'><%= sparepart.sparepart_name %></td>
+                    <td scope='row'><%= @appointment.service %></td>
+                    <td scope='row'><%= @appointment.service_date %></td>
+                    <td scope='row'><%= sparepart.quantity %></td>
+                    <td scope='row'><%= sparepart.price %></td>
+                    <td scope='row'><%= sparepart.total %></td>
+                  </tr>
+                  <% end %>
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+
+          <div class="d-flex flex-row-reverse bg-dark text-white p-4">
+            <div class="py-3 px-5 text-right">
+              <div class="mb-2">Grand Total</div>
+              <div class="h2 font-weight-light">$234,234</div>
+            </div>
+
+            <div class="py-3 px-5 text-right">
+              <div class="mb-2">Discount</div>
+              <div class="h2 font-weight-light">10%</div>
+            </div>
+
+            <div class="py-3 px-5 text-right">
+              <div class="mb-2">partial total</div>
+              <div class="h2 font-weight-light"><%= @total %></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-light mt-5 mb-5 text-center small">by : <a class="text-light" target="_blank"
+      href="http://totoprayogo.com">totoprayogo.com</a></div>
+
+</div>

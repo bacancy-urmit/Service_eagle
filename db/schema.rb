@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_09_172131) do
+ActiveRecord::Schema.define(version: 2020_03_11_171555) do
 
   create_table "booked_appointments", force: :cascade do |t|
     t.string "vehicle_name"
@@ -51,6 +51,15 @@ ActiveRecord::Schema.define(version: 2020_03_09_172131) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["company_id"], name: "index_company_admins_on_company_id"
     t.index ["user_id"], name: "index_company_admins_on_user_id"
+  end
+
+  create_table "invoices", force: :cascade do |t|
+    t.integer "service_charge", default: 0
+    t.float "total"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "booked_appointment_id"
+    t.index ["booked_appointment_id"], name: "index_invoices_on_booked_appointment_id"
   end
 
   create_table "payments", force: :cascade do |t|
@@ -100,8 +109,8 @@ ActiveRecord::Schema.define(version: 2020_03_09_172131) do
     t.string "service_status"
     t.string "description"
     t.decimal "estimation"
-    t.integer "appoinment_booking_id"
-    t.index ["appoinment_booking_id"], name: "index_service_updates_on_appoinment_booking_id"
+    t.integer "booked_appointment_id"
+    t.index ["booked_appointment_id"], name: "index_service_updates_on_booked_appointment_id"
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -127,6 +136,7 @@ ActiveRecord::Schema.define(version: 2020_03_09_172131) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "quantity"
+    t.float "total"
     t.integer "sparepart_id"
     t.integer "booked_appointment_id"
     t.index ["booked_appointment_id"], name: "index_used_spareparts_on_booked_appointment_id"
@@ -171,9 +181,10 @@ ActiveRecord::Schema.define(version: 2020_03_09_172131) do
   add_foreign_key "companies", "service_centers"
   add_foreign_key "company_admins", "companies"
   add_foreign_key "company_admins", "users"
+  add_foreign_key "invoices", "booked_appointments"
   add_foreign_key "payments", "booked_appointments", column: "appoinment_bookings_id"
   add_foreign_key "service_center_capacities", "service_centers"
-  add_foreign_key "service_updates", "booked_appointments", column: "appoinment_booking_id"
+  add_foreign_key "service_updates", "booked_appointments"
   add_foreign_key "used_spareparts", "booked_appointments"
   add_foreign_key "used_spareparts", "spareparts"
   add_foreign_key "user_servicecenters", "service_centers"

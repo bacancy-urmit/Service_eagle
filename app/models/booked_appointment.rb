@@ -7,6 +7,7 @@ class BookedAppointment < ApplicationRecord
   has_many :used_spareparts
   has_many :spareparts, through: :used_spareparts
   has_many :service_updates, dependent: :destroy
+  has_many :invoices
   Two_wheeler = %w[bike activa Other].freeze
   Four_wheeler = %w[truck car Other].freeze
 

@@ -3,10 +3,12 @@
 class UsedSparepart < ApplicationRecord
   belongs_to :sparepart
   belongs_to :booked_appointment
+  has_one :invoice
+  before_save :calculate_sparepart_total
+
   def self.search(search)
     if search
       booked_appoinments = BookedAppointment.find_by(token: search)
-      binding.pry
       if booked_appoinments
         booked_appoinments.used_spareparts
       else
@@ -15,5 +17,12 @@ class UsedSparepart < ApplicationRecord
     else
       UsedSparepart.all
     end
+  end
+
+  private
+
+  def calculate_sparepart_total
+    sparepart = Sparepart.find(sparepart_id)
+    self.total = quantity * sparepart.price
   end
 end
