@@ -1,6 +1,20 @@
 <% if user_signed_in? and current_user.has_role? :super_admin %>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-to justify-content-between">
+  <ul class="navbar-nav">
+    <li class="navbar-brand">
+      <span class="nav-link"><%= link_to "add company admin", new_company_admin_path %>
+    </li>
+
+    <li class="navbar-brand">
+      <span class="nav-link"><%= link_to "dashbord", super_admins_path %></span>
+    </li>
+    <li class="navbar-brand">
+      <span class="nav-link"> <%= link_to "signout", destroy_user_session_path, method: :delete %></span>
+    </li>
+  </ul>
+</nav>
   <div class='container'>
-    <%= link_to "add company admin", new_company_admin_path %><br />
+    <br />
     <br />
     <table class='table'>
       <thead>
@@ -25,7 +39,6 @@
           </tr>
         <% end %>
       </tbody>
-      <%= link_to "dashbord", super_admins_path %>
     </div>
   <% elsif user_signed_in? and current_user.has_role? :company_admin %>
     <%= link_to "display service centers", service_centers_path %><br />

@@ -20,14 +20,18 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'activerecord-session_store'
 gem 'cancancan'
+gem 'client_side_validations'
 gem 'devise'
 gem 'hirb'
 gem 'htmlbeautifier'
 gem 'jbuilder', '~> 2.7'
 gem 'jquery-rails'
+gem 'parsley-rails'
 gem 'rolify'
 gem 'rubocop', require: false
 gem 'rufo'
+gem 'stripe'
+gem 'whenever', require: false
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password

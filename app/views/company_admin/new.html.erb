@@ -1,50 +1,43 @@
-<% if user_signed_in? %>
-<div class= "container">
-<div class= "row">
-<div class= "col-md-6">
-<%= form_with model: @user, url: company_admin_index_path, local: true do |f| %>
-    
-   <%= select_tag(:company_id, options_from_collection_for_select(Company.all, :id, :name), { :class => "form-control", :prompt => "Select company" }) %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <%= form_with model: @user, url: company_admin_index_path, validate: true, local: true do |f| %>
 
-    <div class= "form-group">
-        <%= f.label :firstname %><br/>
+      <%= select_tag(:company_id, options_from_collection_for_select(Company.all, :id, :name), { :class => "form-control", :prompt => "Select company" }) %>
+
+      <div class="form-group">
+        <%= f.label :firstname %><br />
         <%= f.text_field :firstname %>
-    </div>
-        
-    
-    <div class= "form-group">
-        <%= f.label :laststname %><br/>
+      </div>
+
+
+      <div class="form-group">
+        <%= f.label :laststname %><br />
         <%= f.text_field :lastname %>
-    </div>
-    
-    <div class= "form-group">
-        <%= f.label :username %><br/>
-        <%= f.text_field :username %>
-    </div>
-    
-    <div class= "form-group">
-        <%= f.label :email %><br/>
-        <%= f.text_field :email %>
-    </div>
-    
-    <div class= "form-group">
-        <%= f.label :contact %><br/>
-        <%= f.text_field :contact %>
-    </div>
-    <div class= "form-group">
-        <%= f.label :password %><br/>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :username %><br />
+        <%= f.text_field :username, placeholder: "name3" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :email %><br />
+        <%= f.text_field :email, placeholder: "service.eagle@gmail.com" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :contact %><br />
+        <%= f.text_field :contact, placeholder: "+91-123 456 789" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :password %><br />
         <%= f.password_field :password %>
-    </div>
-    
-    <div class= "form-group">
-        <%= f.label :password_confirmation %><br/>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password_confirmation %><br />
         <%= f.password_field :password_confirmation %>
-    </div>
-    <%= f.submit "create admin" %>
-<% end %>
-<% else %>
-<h3>Please login!!!!!!!!</h3>
-<h3>If you are new user then sign up</h3>
-<%= link_to "sign in", new_user_registration_path %>
-<%= link_to "sign in", new_user_session_path %>
-<% end %>
+      </div>
+      <%= f.submit "create admin" %>
+      <% end %>

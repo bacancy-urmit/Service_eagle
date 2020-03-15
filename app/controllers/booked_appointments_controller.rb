@@ -2,13 +2,17 @@
 
 # users service  booking controller
 class BookedAppointmentsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :find_all_booked_appointments_for_user, only: %i[index]
+  before_action :allowed_parameter, only: %i[create update]
+  before_action :find_booked_appointment, only: %i[edit update show destroy]
+
   def index
     @opts = if params[:vehicle] == 'two'
               BookedAppointment::Two_wheeler
             else
               BookedAppointment::Four_wheeler
             end
-    @booked_appoinment = BookedAppointment.where(user_id: current_user.id)
   end
 
   def new
@@ -17,40 +21,43 @@ class BookedAppointmentsController < ApplicationController
 
   def create
     @book_appoinment = BookedAppointment.new(allowed_parameter)
-    current_user.booked_appointments.build
+    @book_appoinment.user_id = current_user.id
     flash.alert = if @book_appoinment.save
+                    redirect_to booked_appointments_path(current_user.id)
                     'your appoinment is saved'
                   else
+                    render :new
                     'your appoinment is not saved'
                   end
-    redirect_to root_path
   end
 
   def show
-    @booked_appoinment = BookedAppointment.where(user_id: params[:id])
-  end
-
-  def edit
-    @book_appoinment = BookedAppointment.find(params[:id])
+    @servicecenter = ServiceCenter.find(@book_appoinment.service_center_id)
   end
 
   def update
-    @booked_appoinment = BookedAppointment.call(params[:id])
-    @booked_appoinment.update(allowed_parameter)
     flash.alert = 'appoinment is updated'
-    redirect_to booked_appointment_path(current_user.id)
+    redirect_to booked_appointments_path(current_user.id)
   end
 
   def destroy
-    @book_appoinment = BookedAppointment.find(params[:id])
     @book_appoinment.destroy
     flash.alert = 'appoinment deleted'
-    redirect_to booked_appointment_path(current_user.id)
+    redirect_to booked_appointments_path(current_user.id)
   end
 
-  private
+  def find_all_booked_appointments_for_user
+    @booked_appointments = BookedAppointment.search(params[:booking_id])
+    @booked_appointments.each do |appoinment|
+      @servicecenter = ServiceCenter.find(appoinment.service_center_id)
+    end
+  end
 
   def allowed_parameter
     params.require(:booked_appointment).permit(:vehicle_type, :service_center_id, :vehicle_name, :service, :service_date, :pickup_date, :special_request, :service_status, :employee_name, :drop_time, :pickup_time)
+  end
+
+  def find_booked_appointment
+    @book_appoinment = BookedAppointment.find(params[:id])
   end
 end

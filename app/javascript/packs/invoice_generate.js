@@ -1,12 +1,20 @@
-// $(document).ready(function() {
-//     $('#service_update_service_status').on('change', function() {
-//         if (this.value == 'completed') {
-//             $("#generate_invoice").show();
-//             $("#daily-update").hide();
-//         } else {
-//             $("#generate_invoice").hide();
-//             $("#submit_button").show();
-//             $("#daily-update").show();
-//         }
-//     });
-// });
+$(document).ready(function() {
+
+
+    $(".tr").each(function() {
+        var td = $(this);
+        var data = td.find("#service_status").text();
+        if (data == 'completed') {
+
+            td.find("#show_invoice").show();
+            td.find("#edit_option").hide()
+            td.find("#show_option").hide()
+            td.find("#delete_option").hide()
+        } else {
+            td.find("#show_invoice").hide();
+            td.find("#edit_options").show()
+            td.find("#show_options").show()
+            td.find("#delete_options").show()
+        }
+    });
+});

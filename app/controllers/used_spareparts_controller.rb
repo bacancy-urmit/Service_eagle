@@ -7,10 +7,6 @@ class UsedSparepartsController < ApplicationController
     @used_sparepart = UsedSparepart.new
   end
 
-  # def search
-  #   @appoinment_bookig_id = AppoinmentBooking.find_by(params[:booking_id])
-  # end
-
   def index
     @used_spareparts = UsedSparepart.includes(:booked_appointment, :sparepart).search(params[:booking_id])
     @used_spareparts.each do |item|
@@ -25,6 +21,8 @@ class UsedSparepartsController < ApplicationController
     @used_sparepart.booked_appointment_id = @booked_appointment.id
     flash.alert = if @used_sparepart.save
                     redirect_to new_used_sparepart_path
+                    @sparepart = Sparepart.find(@used_sparepart.sparepart_id)
+                    @sparepart.quantity -= @used_sparepart.quantity
                     'record saved successfully!'
                   else
                     'record does not saved successfully'

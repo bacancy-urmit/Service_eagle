@@ -1,6 +1,19 @@
   <% if user_signed_in? and current_user.has_role? :super_admin or current_user.has_role? :company_admin %>
   <div class='container'>
-    <%= link_to "add service center", new_service_center_admin_path %><br /><br />
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-to justify-content-between">
+  <ul class="navbar-nav">
+    <li class="navbar-brand">
+      <span class="nav-link"><%= link_to "add service center", new_service_center_path %>
+    </li>
+
+    <li class="navbar-brand">
+      <span class="nav-link"><%= link_to "dashbord", super_admins_path %></span>
+    </li>
+    <li class="navbar-brand">
+      <span class="nav-link"> <%= link_to "signout", destroy_user_session_path, method: :delete %></span>
+    </li>
+  </ul>
+</nav>
     <table class='table'>
       <thead>
         <tr>

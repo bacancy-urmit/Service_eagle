@@ -1,13 +1,24 @@
 <% if user_signed_in? %>
-<%= link_to "edit profile", edit_user_registration_path %><br /><br />
-<%= link_to "display companies", companies_path %><br /><br />
-<%= link_to "display service centers", service_centers_path %><br /><br />
-<%= link_to "display service center admins", service_center_admins_path %><br /><br />
-<%= link_to "display company admins", company_admin_index_path %><br /><br />
-<%= link_to "signout", destroy_user_session_path, method: :delete %>
-<% else %>
-<h3>Please login!!!!!!!!</h3>
-<h3>If you are new user then sign up</h3>
-<%= link_to "sign in", new_user_registration_path %>
-<%= link_to "sign in", new_user_session_path %>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-to justify-content-between">
+  <ul class="navbar-nav">
+    <li class="navbar-brand">
+      <span class="nav-link"><%= link_to "edit profile", edit_user_registration_path %></span>
+    </li>
+    <li class="navbar-brand">
+      <span class="nav-link"><%= link_to "display company admins", company_admin_index_path %></span>
+    </li>
+    <li class="navbar-brand">
+     <span class="nav-link"> <%= link_to "display companies", companies_path %></span>
+    </li>
+    <li class="navbar-brand">
+     <span class="nav-link"> <%= link_to "display service centers", service_centers_path %></span>
+    </li>
+    <li class="navbar-brand">
+     <span class="nav-link"> <%= link_to "display service centers admin", service_center_admins_path %></span>
+    </li>
+    <li class="navbar-brand">
+     <span class="nav-link"> <%= link_to "signout", destroy_user_session_path, method: :delete %></span>
+    </li>
+    </ul>
+</nav>
 <% end %>

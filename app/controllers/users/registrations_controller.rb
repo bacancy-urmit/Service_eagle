@@ -16,9 +16,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   byebug
   #   redirect_to new_user_session_path
   # end
+
   private
 
   def sign_up_params
-    params.require(:user).permit(:firstname,:lastname,:username,:contact,:email,:password,:password_confirmation)
+    params.require(:user).permit(:firstname, :lastname, :username, :contact, :email, :password, :password_confirmation)
   end
 end

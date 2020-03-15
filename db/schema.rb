@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_11_171555) do
+ActiveRecord::Schema.define(version: 2020_03_12_163138) do
 
   create_table "booked_appointments", force: :cascade do |t|
     t.string "vehicle_name"
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 2020_03_11_171555) do
 
   create_table "invoices", force: :cascade do |t|
     t.integer "service_charge", default: 0
-    t.float "total"
+    t.float "total", default: 0.0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "booked_appointment_id"

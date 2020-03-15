@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class ServiceUpdate < ApplicationRecord
+  validates :service_status, presence: true
+  validates :description, presence: true
+  validates :estimation, presence: true
   belongs_to :booked_appointment
   def self.search(search)
     if search

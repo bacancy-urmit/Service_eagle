@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class SuperAdminController < ApplicationController
+  before_action :authenticate_user!
   def new
     @user = User.new
   end
@@ -11,8 +12,8 @@ class SuperAdminController < ApplicationController
     if @user.save!
       @user.add_role :company_admin
       render html: 'comany admin created'
-      link_to "add another company",  companies_new_path
-      link_to "add another admin", new_super_admin_path
+      link_to 'add another company', companies_new_path
+      link_to 'add another admin', new_super_admin_path
     else
       render html: 'compnay admin not created'
     end

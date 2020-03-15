@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class ServiceCenterCapacitiesController < ApplicationController
+  before_action :authenticate_user!
   def new
     @servicecenter = current_user.user_servicecenter.service_center.name
     @set_count = ServiceCenterCapacity.new

@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6">
-        <%= form_with model: @bookappoinment, local: true do |f| %>
+        <%= form_with model: @book_appoinment, local: true, validate: true do |f| %>
           <%= f.select(:service_center_id, options_from_collection_for_select(ServiceCenter.all, :id, :name), { :class => "form-control", :prompt => "Select service center" }) %>
           <br />
           <br />

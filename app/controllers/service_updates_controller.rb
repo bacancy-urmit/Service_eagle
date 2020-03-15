@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
 class ServiceUpdatesController < ApplicationController
+  before_action :authenticate_user!
   def new
     @update = ServiceUpdate.new
   end
 
   def index
-    @updates = ServiceUpdate.joins(:booked_appointment).select(:service_status, :description, :created_at, :estimation, 'booked_appointments.token').where('booked_appointments.token = ?', params[:booking_id])
+    @updates = ServiceUpdate.joins(:booked_appointment).select(:service_status, :description, :created_at, :estimation, 'booked_appointments.token').search(params[:booking_id])
   end
 
   def create
@@ -16,7 +17,9 @@ class ServiceUpdatesController < ApplicationController
     flash.alert = if @update.save
                     'update saved successfully'
                     if @update.service_status == 'completed'
-                      redirect_to invoice_path(@appoinment)
+                      @appoinment.service_status = 'completed'
+                      @appoinment.save
+                      redirect_to generate_invoice_path(@update)
                     elsif @update.service_status == 'inprogress'
                       redirect_to service_updates_path
                     end
@@ -48,9 +51,9 @@ class ServiceUpdatesController < ApplicationController
     redirect_to service_updates_path(@update.id)
   end
 
-  private
-
   def allowed_parameter
     params.require(:service_update).permit(:service_status, :description, :estimation)
   end
+
+  private
 end

@@ -1,29 +1,29 @@
 <% if user_signed_in? %>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6">
-        <%= form_with model: @company, url: companies_path, local: true do |c| %>
-          <div class="form-group">
-            <%= c.label :company_name %><br />
-            <%= c.text_field :name, placeholder: "eg.Bajaj" %>
-          </div>
-          <div class="form-group">
-            <%= c.label :website %><br />
-            <%= c.text_field :website, placeholder: "eg.www.bajaj.com" %>
-          </div>
-          <div class="form-group">
-            <%= c.label :email %><br />
-            <%= c.text_field :email, placeholder: "eg.Bajaj@gmail.com" %>
-          </div>
-          <%= c.submit %>
-        <% end %>
-        <%= link_to "go back", super_admins_path %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <%= form_with model: @company, url: companies_path, validate: true, local: true do |c| %>
+      <div class="form-group">
+        <%= c.label :company_name %><br />
+        <%= c.text_field :name, placeholder: "eg.Bajaj" %>
       </div>
+      <div class="form-group">
+        <%= c.label :website %><br />
+        <%= c.text_field :website, placeholder: "eg.https://serviceeagle.in" %>
+      </div>
+      <div class="form-group">
+        <%= c.label :email %><br />
+        <%= c.text_field :email, placeholder: "eg.Bajaj@gmail.com" %>
+      </div>
+      <%= c.submit %>
+      <% end %>
+      <%= link_to "go back", super_admins_path %>
     </div>
   </div>
+</div>
 <% else %>
-  <h3>Please login!!!!!!!!</h3>
-  <h3>If you are new user then sign up</h3>
-  <%= link_to "sign in", new_user_registration_path %>
-  <%= link_to "sign in", new_user_session_path %>
+<h3>Please login!!!!!!!!</h3>
+<h3>If you are new user then sign up</h3>
+<%= link_to "sign in", new_user_registration_path %>
+<%= link_to "sign in", new_user_session_path %>
 <% end %>

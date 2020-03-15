@@ -2,7 +2,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6">
-      <%= form_with model: @user, url: service_center_admins_path, local: true do |f| %>
+      <%= form_with model: @user, url: service_center_admins_path, validate: true, local: true do |f| %>
 
       <%= select_tag(:service_center_id, options_from_collection_for_select(ServiceCenter.all, :id, :name), { :class => "form-control", :prompt => "Select service center" }) %>
 

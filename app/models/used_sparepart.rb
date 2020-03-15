@@ -3,8 +3,8 @@
 class UsedSparepart < ApplicationRecord
   belongs_to :sparepart
   belongs_to :booked_appointment
-  has_one :invoice
   before_save :calculate_sparepart_total
+  validates :quantity, presence: true, numericality: { greater_than: 0, message: 'should be greater than 0' }
 
   def self.search(search)
     if search

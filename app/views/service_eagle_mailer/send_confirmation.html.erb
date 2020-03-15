@@ -1,0 +1,34 @@
+<div class='container'>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th scope='col'>boking id</th>
+        <th scope='col'>vehicle name</th>
+        <th scope='col'>service</th>
+        <th scope='col'>service date</th>
+        <th scope='col'>pickup date</th>
+        <th scope='col'>special request</th>
+        <th scope='col'>employee name</th>
+        <th scope='col'>drop time</th>
+        <th scope='col'>pickup time</th>
+        <th scope='col'>service status</th>
+        <th scope='col'>service center</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td scope='row'><%= @appointment.token %></td>
+        <td scope='row'><%= @appointment.vehicle_name %></td>
+        <td scope='row'><%= @appointment.service %></td>
+        <td scope='row'><%= @appointment.service_date %></td>
+        <td scope='row'><%= @appointment.pickup_date %></td>
+        <td scope='row'><%= @appointment.special_request %></td>
+        <td scope='row'><%= @appointment.employee_name %></td>
+        <td scope='row'><%= @appointment.drop_time %></td>
+        <td scope='row'><%= @appointment.pickup_time %></td>
+        <td scope='row'><%= @appointment.service_status %></td>
+        <td scope='row'><%= @service_center.name %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

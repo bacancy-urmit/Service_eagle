@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class ServiceCentersController < ApplicationController
+  before_action :authenticate_user!
   def new
     @new_center = ServiceCenter.new
   end
@@ -12,9 +13,9 @@ class ServiceCentersController < ApplicationController
   def create
     @new_center = ServiceCenter.new(allowed_parameters)
     flash.alert = if @new_center.save
-        "service ceneter creataed succefully"
-      else
-        "service center is not created"
+                    'service ceneter creataed succefully'
+                  else
+                    'service center is not created'
       end
     redirect_to service_centers_path
   end
@@ -30,14 +31,14 @@ class ServiceCentersController < ApplicationController
   def update
     @center = ServiceCenter.find(params[:id])
     @center.update(allowed_parameters)
-    flash.alert = "service center updated successfully"
+    flash.alert = 'service center updated successfully'
     redirect_to service_centers_path
   end
 
   def destroy
     @center = ServiceCenter.find(params[:id])
     @center.destroy
-    flash.alert = "service center deleted successfully"
+    flash.alert = 'service center deleted successfully'
     redirect_to service_centers_path
   end
 

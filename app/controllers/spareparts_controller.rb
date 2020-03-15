@@ -2,6 +2,7 @@
 
 # sparparts controller
 class SparepartsController < ApplicationController
+  before_action :authenticate_user!
   def new
     @newsparepart = Sparepart.new
   end
@@ -9,9 +10,9 @@ class SparepartsController < ApplicationController
   def create
     @newsparepart = Sparepart.new(allowed_parameter)
     flash.alert = if @newsparepart.save
-        'sparepart\'s entry saved!'
-      else
-        'sparepart\'s entry not saved!'
+                    'sparepart\'s entry saved!'
+                  else
+                    'sparepart\'s entry not saved!'
       end
     redirect_to new_sparepart_path
   end
