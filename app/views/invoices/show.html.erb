@@ -1,3 +1,4 @@
+<%= render "booked_appointments/nav" %>
 <div class="container">
   <div class="row">
     <div class="col-12">
@@ -5,7 +6,7 @@
         <div class="card-body p-0">
           <div class="row p-5">
             <div class="col-md-6">
-              <img src="http://via.placeholder.com/400x90?text=logo">
+            <img src="img/1.jpeg">
             </div>
             <div class="col-md-6 text-right">
               <p class="font-weight-bold mb-1">Invoice</p>
@@ -17,7 +18,7 @@
               <div class="row pb-5 p-5">
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6" style="float:left;">
               <p class="font-weight-bold mb-4">From</p>
               <p class="mb-1"><strong><%= @service_center.name %></strong></p>
               <p class="mb-1"><%= @service_center.area %></p>
@@ -60,27 +61,30 @@
                     <td scope='row'><%= sparepart.total %></td>
                   </tr>
                   <% end %>
+                  <%= link_to "pay", make_payment_path(@invoice) %>
                 </tbody>
               </table>
 
             </div>
           </div>
 
-          <div class="d-flex flex-row-reverse bg-dark text-white p-4">
+          
+
             <div class="py-3 px-5 text-right">
-              <div class="mb-2">Grand Total</div>
-              <div class="h2 font-weight-light"><%= @invoice.total %></div>
+              <div class="mb-2">partial total</div>
+              <div class="h2 font-weight-light"><%= @partial_total %></div>
             </div>
 
             <div class="py-3 px-5 text-right">
               <div class="mb-2">service charge</div>
               <div class="h2 font-weight-light"><%= @invoice.service_charge %></div>
             </div>
-
-            <div class="py-3 px-5 text-right">
-              <div class="mb-2">partial total</div>
-              <div class="h2 font-weight-light"><%= @partial_total %></div>
+            <div class="d-flex flex-row-reverse bg-dark text-white p-4">
+            <div class="py-3 px-5 text-right" style='display:inlin-block;'>
+              <div class="mb-2">Grand Total</div>
+              <div class="h2 font-weight-light"><%= @invoice.total %></div>
             </div>
+
           </div>
         </div>
       </div>

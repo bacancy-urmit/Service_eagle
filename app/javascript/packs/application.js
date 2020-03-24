@@ -13,7 +13,10 @@ require("packs/appoinment")
 require("packs/appoinment_dropdown")
 require("packs/invoice_generate")
 require("packs/service")
-
+require("packs/bootstrap.min")
+require("packs/ekko-lightbox")
+require("packs/jquery-2.1.1.min")
+require("packs/simple-lightbox")
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)

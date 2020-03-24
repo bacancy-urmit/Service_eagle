@@ -1,0 +1,26 @@
+<%= render "service_center_admins/nav" %>
+<div class="booked-appointment-index_page">
+  <div class='container'>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th scope='col'>vehicle name</th>
+          <th scope='col'>sparepart name</th>
+          <th scope='col'>price</th>
+          <th scope='col'>quantity</th>
+          <th scope='col'>manufactured year</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @spareparts.each do |sparepart| %>
+        <tr>
+          <td scope='row'><%= sparepart.vehicle_name %></td>
+          <td scope='row'><%= sparepart.sparepart_name %></td>
+          <td scope='row'><%= sparepart.price %></td>
+          <td scope='row'><%= sparepart.quantity %></td>
+          <td scope='row'><%= sparepart.manufactured_year %></td>
+        </tr>
+        <% end %>
+      </tbody>
+  </div>
+</div>

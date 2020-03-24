@@ -1,48 +1,36 @@
-  <% if user_signed_in? and current_user.has_role? :super_admin or current_user.has_role? :company_admin %>
-  <div class='container'>
-  <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-to justify-content-between">
-  <ul class="navbar-nav">
-    <li class="navbar-brand">
-      <span class="nav-link"><%= link_to "add service center", new_service_center_path %>
-    </li>
-
-    <li class="navbar-brand">
-      <span class="nav-link"><%= link_to "dashbord", super_admins_path %></span>
-    </li>
-    <li class="navbar-brand">
-      <span class="nav-link"> <%= link_to "signout", destroy_user_session_path, method: :delete %></span>
-    </li>
-  </ul>
-</nav>
-    <table class='table'>
-      <thead>
-        <tr>
-          <th scope='col'>service center name</th>
-          <th scope='col'>area</th>
-          <th scope='col'>city</th>
-          <th scope='col'>state</th>
-          <th scope='col'>pincode</th>
-          <th scope='col'>email</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @centers.each do |center| %>
-        <tr>
-          <td scope='row'><%= center.name %></td>
-          <td scope='row'><%= center.city %></td>
-          <td scope='row'><%= center.area %></td>
-          <td scope='row'><%= center.state %></td>
-          <td scope='row'><%= center.pincode %></td>
-          <td scope='row'><%= center.email %></td>
-          <td scope='row'><%= link_to "edit", edit_service_center_path(center.id) %></td>
-          <td><%= link_to "delete", service_center_path(center.id), method: :delete %></td>
-        </tr>
-        <% end %>
-  </div>
-  <% else %>
-  <h3>Please login!!!!!!!!</h3>
-  <h3>If you are new user then sign up</h3>
-  <%= link_to "sign in", new_user_registration_path %>
-  <%= link_to "sign in", new_user_session_path %>
+  <% if current_user.has_role? :super_admin %>
+  <%= render "superadmin_nav" %>
+  <% elsif current_user.has_role? :company_admin %>
+  <%= render "companyadmin_nav" %>
   <% end %>
+  <div class='booked-appointment-index_page'>
+    <div class='container'>
+      <table class='table'>
+        <thead>
+          <tr>
+            <th scope='col'>service center name</th>
+            <th scope='col'>area</th>
+            <th scope='col'>city</th>
+            <th scope='col'>state</th>
+            <th scope='col'>pincode</th>
+            <th scope='col'>email</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @centers.each do |center| %>
+          <tr>
+            <td scope='row'><%= center.name %></td>
+            <td scope='row'><%= center.city %></td>
+            <td scope='row'><%= center.area %></td>
+            <td scope='row'><%= center.state %></td>
+            <td scope='row'><%= center.pincode %></td>
+            <td scope='row'><%= center.email %></td>
+            <td scope='row'><%= link_to "edit", edit_service_center_path(center.id) %></td>
+            <td><%= link_to "delete", service_center_path(center.id), method: :delete %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
   

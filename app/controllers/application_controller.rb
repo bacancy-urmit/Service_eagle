@@ -20,9 +20,9 @@ class ApplicationController < ActionController::Base
       elsif current_user.has_role? :company_admin
         company_admin_index_path
       elsif current_user.has_role? :servicecenter_admin
-        service_center_admins_path
+        service_center_admin_pending_appointments_path
       else
-        booked_appointments_path
+        root_path
       end
     end
   end

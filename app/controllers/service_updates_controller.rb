@@ -4,6 +4,7 @@ class ServiceUpdatesController < ApplicationController
   before_action :authenticate_user!
   def new
     @update = ServiceUpdate.new
+    @booked_appointment = BookedAppointment.find(params[:booking_id])
   end
 
   def index
@@ -16,15 +17,17 @@ class ServiceUpdatesController < ApplicationController
     @update.booked_appointment_id = @appoinment.id
     flash.alert = if @update.save
                     'update saved successfully'
-                    if @update.service_status == 'completed'
-                      @appoinment.service_status = 'completed'
-                      @appoinment.save
+                    if allowed_parameter[:service_status] == 'completed'
+                      @appoinment.update(service_status: allowed_parameter[:service_status])
+                      ServiceUpdate.initiate_payment(@appoinment)
                       redirect_to generate_invoice_path(@update)
-                    elsif @update.service_status == 'inprogress'
-                      redirect_to service_updates_path
+                    else
+                      'record not saved!'
+                      redirect_to service_center_admin_pending_appointments_path
                     end
                   else
                     'update does not save successfully'
+                    render :new
                   end
   end
 
@@ -54,6 +57,4 @@ class ServiceUpdatesController < ApplicationController
   def allowed_parameter
     params.require(:service_update).permit(:service_status, :description, :estimation)
   end
-
-  private
 end

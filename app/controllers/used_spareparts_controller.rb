@@ -20,14 +20,14 @@ class UsedSparepartsController < ApplicationController
     @booked_appointment = BookedAppointment.find_by(token: params[:booking_id])
     @used_sparepart.booked_appointment_id = @booked_appointment.id
     flash.alert = if @used_sparepart.save
-                    redirect_to new_used_sparepart_path
-                    @sparepart = Sparepart.find(@used_sparepart.sparepart_id)
+                    @sparepart = Sparepart.find_by(id: @used_sparepart.sparepart_id)
                     @sparepart.quantity -= @used_sparepart.quantity
+                    redirect_to new_used_sparepart_path
                     'record saved successfully!'
                   else
-                    'record does not saved successfully'
                     render :new
-      end
+                    'record does not saved successfully'
+                  end
   end
 
   def edit

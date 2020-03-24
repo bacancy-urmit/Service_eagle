@@ -1,10 +1,313 @@
-<% if user_signed_in? %>
-  <%= link_to "book appointment", booked_appointments_path %><br/>
-  <br/>
-  <%= link_to "edit", edit_user_registration_path %><br/>
-  <br/>
-  <%= link_to "sign out", destroy_user_session_path, method: :delete %>
-<% else %>
-  <%= link_to "signup", new_user_registration_path %>
-  <%= link_to "signin", new_user_session_path %>
-<% end %>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Service-Center</title>
+  </head>
+  
+  
+  
+  
+<body>
+  
+  <section id="header" class="clearfix">
+   <div class="container">
+    <div class="row">
+	 <div class="header clearfix">
+	  <div class="col-sm-6 header_left clearfix">
+	   <div class="header_left_inner">
+	    <ul>
+		 <li><p><i class="fa fa-map-o"></i> Service Eagle</p></li>
+		 <li><p><i class="fa fa-phone"></i><a href="#"> Service.eagle12@gmail.com</a></p></li>
+		</ul>
+	   </div>
+	  </div>
+	  <div class="col-sm-6 header_right clearfix">
+	   <div class="header_right_inner">
+	    <div class="col-sm-7 header_right_inner_left clearfix">
+		 <div class="header_right_inner_left_inner">
+		  <p>Opening Hours:<span class="dating_1"> Mon-Fri: 10am-7pm; Sun: 9am-1pm</span></p>
+		 </div>
+		</div>
+	
+	   </div>
+	  </div>
+	 </div>
+	</div>
+   </div>
+  </section>
+
+  <section id="top" class="cd-secondary-nav clearfix">
+    
+    <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>                        
+      </button>
+      <span class="dating_2"><img src="img/1.jpeg"></span>Service<span class="dating_3">Center</span>
+    </div>
+    <div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav navbar-right">
+          <li><%= link_to "Home", root_path %></li>
+		  <li><%= link_to "book appointment", new_booked_appointment_path %></li>
+		  <li><%= link_to "Edit profile", edit_user_registration_path %></li>
+		  <li><%= form_tag booked_appointments_path, class: "form-inline", :method => "get" do %>
+        <%= text_field_tag :booking_id, nil, placeholder: "Enter booking id", class: "form-control mr-sm-2" %>
+        <%= submit_tag "search", class: "btn btn-outline-success my-2 my-sm-0" %>
+    <% end %> </li>
+		  <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
+	    </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+  </section>
+  
+  <section id="center_1" class="clearfix">
+   <div class="center_1_main">
+    <div class="container">
+    <div class="row">
+	 <div class="center_1_top clearfix">
+	   <div class="center_1_top_inner_1">
+	    <p>WE ARE HAPPY TO HELP YOU!!</p>
+	   </div>
+	   <div class="center_1_top_inner_2">
+	    <h2>WE PROVIDE BEST SERVICES IN THE WORLD<br>
+	   </div>
+	 </div>
+	</div>
+   </div>
+   </div>
+  </section>
+
+  
+  <section id="center_3" class="clearfix">
+    <div class="container">
+    <div class="row">
+	 <div class="center_3 clearfix">
+	   <h2>Services we provide</h2>
+	 </div>
+	 <div class="center_3_top clearfix">
+	  <div class="center_3_top_inner">
+	   <div class="col-sm-4 center_3_top_inner_left clearfix">
+	    <div class="center_3_top_inner_left_inner">
+		 <div class="col-sm-3 repair_left clearfix">
+		  <div class="repair_left_inner">
+		   <p><i class="fa fa-gears"></i></p>
+		  </div>
+		 </div>
+		 <div class="col-sm-9 repair_right clearfix">
+		  <div class="repair_right_inner">
+		   <h2><a href="#">Warranty Beyond Warranty</a></h2>
+		   <p>“Warranty Beyond Warranty” The cover protects you against the cost of repair or replacement of components as mentioned in the brochure and also the associated labor cost on your vehicle subject to the terms and conditions contained altogether. </p>
+		  </div>
+		 </div>
+		</div>
+	   </div>
+	   <div class="col-sm-4 center_3_top_inner_left clearfix">
+	    <div class="center_3_top_inner_left_inner">
+		 <div class="col-sm-3 repair_left clearfix">
+		  <div class="repair_left_inner">
+		   <p><i class="fa fa-rouble"></i></p>
+		  </div>
+		 </div>
+		 <div class="col-sm-9 repair_right clearfix">
+		  <div class="repair_right_inner">
+		   <h2><a href="#">24x7 Car Roadside Assistance</a></h2>
+		   <p>All Service eagle service center offers the Roadside Assistance Package – a 24x7 emergency support provided in the event of any mechanical/electrical breakdown or traffic accident of the vehicle. This ensures hassle-free service to the customer in the event of a car-breakdown.</p>
+		 
+		  </div>
+		 </div>
+		</div>
+	   </div>
+	   <div class="col-sm-4 center_3_top_inner_left clearfix">
+	    <div class="center_3_top_inner_left_inner">
+		 <div class="col-sm-3 repair_left clearfix">
+		  <div class="repair_left_inner">
+		   <p><i class="fa fa-magnet"></i></p>
+		  </div>
+		 </div>
+		 <div class="col-sm-9 repair_right clearfix">
+		  <div class="repair_right_inner">
+		   <h2><a href="#">Car Wheel Alignment and Balancing</a></h2>
+		   <p>Wheels get damaged from a variety of causes including bad roads and potholes, leading to misalignment. Hence the wheels of your car need regular attention for you to ensure proper wheel alignment and balancing. Our experts help you maximize the life of your car wheels by providing a wide range of wheel care services.</p>
+		  </div>
+		 </div>
+		</div>
+	   </div>
+	  </div>
+	  <div class="center_3_top_inner">
+	   <div class="col-sm-4 center_3_top_inner_left clearfix">
+	    <div class="center_3_top_inner_left_inner">
+		 <div class="col-sm-3 repair_left clearfix">
+		  <div class="repair_left_inner">
+		   <p><i class="fa fa-car"></i></p>
+		  </div>
+		 </div>
+		 <div class="col-sm-9 repair_right clearfix">
+		  <div class="repair_right_inner">
+		   <h2><a href="#">Accessories</a></h2>
+		   <p>Every car owner desires to make their car appear class apart so that the car can get some envious looks.Car accessories could change the look and feel of your car,give you a pleasant driving experience and also to maintain the car in the best way.</p>
+		  </div>
+		 </div>
+		</div>
+	   </div>
+	   <div class="col-sm-4 center_3_top_inner_left clearfix">
+	    <div class="center_3_top_inner_left_inner">
+		 <div class="col-sm-3 repair_left clearfix">
+		  <div class="repair_left_inner">
+		   <p><i class="fa fa-spinner"></i></p>
+		  </div>
+		 </div>
+		 <div class="col-sm-9 repair_right clearfix">
+		  <div class="repair_right_inner">
+		   <h2><a href="#">Car Body Repairs</a></h2>
+		   <p>Unfortunately, accidents happen that can cause damage to the vehicle in terms of paint damage and dent. Paint scratches and dents shows detract from the appearance of your car.</p>
+		  </div>
+		 </div>
+		</div>
+	   </div>
+	   <div class="col-sm-4 center_3_top_inner_left clearfix">
+	    <div class="center_3_top_inner_left_inner">
+		 <div class="col-sm-3 repair_left clearfix">
+		  <div class="repair_left_inner">
+		   <p><i class="fa fa-neuter"></i></p>
+		  </div>
+		 </div>
+		 <div class="col-sm-9 repair_right clearfix">
+		  <div class="repair_right_inner">
+		   <h2><a href="#">Car Wash and Car Cleaning Services</a></h2>
+		   <p>At Service eagle service centers, we offer an extensive range of car wash and cleaning services. Our car grooming packages include a complete range of services right from basic car washing to detailed interior and upholstery cleaning, protective coating, vacuuming and dashboard polishing./p>
+		  </div>
+		 </div>
+		</div>
+	   </div>
+	  </div>
+	 </div>
+	</div>
+   </div>
+  </section>
+  
+ 
+  
+  
+  <section id="footer" class="clearfix">
+  <div class="container">
+  <div class="row">
+   <div class="footer footer_left clearfix">
+    <div class="col-sm-4 footer_left clearfix">
+	 <h2><span class="dating_2"><img src="img/1.jpeg"></span>Service<span class="dating_3">Eagle</span></h2>
+	 <p>Class aptent taciti sociosqu ad litora<br> torquent per conubia nostra, per inceptos C.<br> Curabitursodales Sed dignissim lacinia nunc.Fusce nec tellus sed Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos C. Curabitursodales ligula in libero. 
+Sed dignissim lacinia nunc.</p>
+	 <ul>
+		<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+		<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+		<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+		<li><a href="#"><i class="fa fa-instagram"></i></a></li>
+		<li><a href="#"><i class="fa fa-envelope"></i></a></li>
+	   </ul>
+	</div>
+	<div class="col-sm-2 footer_left clearfix inline_block">
+	
+	</div>
+	<div class="col-sm-3 footer_left clearfix inline_block">
+	 <h2>Service Centers</h2>
+	 <%@service_centers.each do |service_center|%>
+	 <h4><i class="fa-fa-chevron-right"></i><%=service_center.name%></h4>
+	 <%end%>
+	</div>
+	<div class="col-sm-3 footer_left clearfix">
+	 <h2>Contacts</h2>
+	 <p>+91-123 456 7890</p>
+   <p>+91-123 456 6860</p>
+	</div>
+   </div>
+  </div>
+ </div>
+</section>
+ 
+ 
+ <section id="footer_last" class="clearfix">
+  <div class="container">
+  <div class="row">
+   <div class="footer_last clearfix">
+         <p class="website">© 2020 Service Eagle. All rights reserved</p>
+	</div>
+   </div>
+  </div>
+ 
+</section>
+  
+
+</body>
+ <script type="text/javascript">
+$(document).ready(function(){
+
+/*****Fixed Menu******/
+var secondaryNav = $('.cd-secondary-nav'),
+   secondaryNavTopPosition = secondaryNav.offset().top;
+	$(window).on('scroll', function(){
+		if($(window).scrollTop() > secondaryNavTopPosition ) {
+			secondaryNav.addClass('is-fixed');	
+		} else {
+			secondaryNav.removeClass('is-fixed');
+		}
+	});	
+	
+});
+</script>  
+ <script type="text/javascript" src="js/simple-lightbox.js"></script>
+ <script>
+	$(function(){
+		var $gallery = $('.gallery a').simpleLightbox();
+
+		$gallery.on('show.simplelightbox', function(){
+			console.log('Requested for showing');
+		})
+		.on('shown.simplelightbox', function(){
+			console.log('Shown');
+		})
+		.on('close.simplelightbox', function(){
+			console.log('Requested for closing');
+		})
+		.on('closed.simplelightbox', function(){
+			console.log('Closed');
+		})
+		.on('change.simplelightbox', function(){
+			console.log('Requested for change');
+		})
+		.on('next.simplelightbox', function(){
+			console.log('Requested for next');
+		})
+		.on('prev.simplelightbox', function(){
+			console.log('Requested for prev');
+		})
+		.on('nextImageLoaded.simplelightbox', function(){
+			console.log('Next image loaded');
+		})
+		.on('prevImageLoaded.simplelightbox', function(){
+			console.log('Prev image loaded');
+		})
+		.on('changed.simplelightbox', function(){
+			console.log('Image changed');
+		})
+		.on('nextDone.simplelightbox', function(){
+			console.log('Image changed to next');
+		})
+		.on('prevDone.simplelightbox', function(){
+			console.log('Image changed to prev');
+		})
+		.on('error.simplelightbox', function(e){
+			console.log('No image found, go to the next/prev');
+			console.log(e);
+		});
+	});
+</script>   
+</html>

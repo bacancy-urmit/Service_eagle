@@ -8,13 +8,18 @@ class ServiceUpdate < ApplicationRecord
   def self.search(search)
     if search
       booked_appoinments = BookedAppointment.find_by(token: search)
-      if booked_appoinments
-        booked_appoinments.service_updates
-      else
-        ServiceUpdate.all
-      end
-    else
-      ServiceUpdate.all
+      return booked_appoinments.service_updates if booked_appoinments
     end
+    ServiceUpdate.all
+  end
+
+  def self.initiate_payment(appointment)
+    appointment.build_payment.save if appointment.payment.nil? 
+  end
+
+  private
+
+  def completed_service_status?
+    service_status == 'completed'
   end
 end

@@ -1,56 +1,35 @@
-<% if user_signed_in? and current_user.has_role? :super_admin %>
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-to justify-content-between">
-  <ul class="navbar-nav">
-    <li class="navbar-brand">
-      <span class="nav-link"><%= link_to "add company admin", new_company_admin_path %>
-    </li>
-
-    <li class="navbar-brand">
-      <span class="nav-link"><%= link_to "dashbord", super_admins_path %></span>
-    </li>
-    <li class="navbar-brand">
-      <span class="nav-link"> <%= link_to "signout", destroy_user_session_path, method: :delete %></span>
-    </li>
-  </ul>
-</nav>
+<%if current_user.has_role? :super_admin%>
+<%= render "superadmin_nav" %>
+<% else %>
+<%= render "companyadmin_nav" %>
+<% end %>
+<div class='booked-appointment-index_page'>
   <div class='container'>
-    <br />
-    <br />
     <table class='table'>
       <thead>
         <tr>
-          <th scope='col'>first name</th>
-          <th scope='col'>lastname</th>
-          <th scope='col'>username</th>
-          <th scope='col'>email</th>
-          <th scope='col'>contact</th>
+          <th>first name</th>
+          <th>lastname</th>
+          <th>username</th>
+          <th>email</th>
+          <th>contact</th>
+          <th>company</th>
         </tr>
       </thead>
       <tbody>
-        <% @company_admin.each do |admin| %>
-          <tr>
-            <td scope='row'><%= admin.firstname %></td>
-            <td scope='row'><%= admin.lastname %></td>
-            <td scope='row'><%= admin.username %></td>
-            <td scope='row'><%= admin.email %></td>
-            <td scope='row'><%= admin.contact %></td>
-            <td scope='row'><%= link_to "edit", edit_company_admin_path(admin.id) %></td>
-            <td scope='row'><%= link_to "delete", company_admin_path(admin.id), data: { method: :delete } %></td>
-          </tr>
+        <% @company_admins.each do |admin| %>
+        <tr>
+          <td><%= admin.user.firstname %></td>
+          <td><%= admin.user.lastname %></td>
+          <td><%= admin.user.username %></td>
+          <td><%= admin.user.email %></td>
+          <td><%= admin.user.contact %></td>
+          <td><%=admin.company.name%>
+          <td><%= link_to "edit", edit_company_admin_path(admin.id) %></td>
+          <td><%= link_to "delete", company_admin_path(admin.id), data: { method: :delete } %></td>
+        </tr>
         <% end %>
       </tbody>
-    </div>
-  <% elsif user_signed_in? and current_user.has_role? :company_admin %>
-    <%= link_to "display service centers", service_centers_path %><br />
-    <br />
-    <%= link_to "display service center admins", service_center_admins_path %><br />
-    <br />
-    <%= link_to "edit", edit_user_registration_path(current_user.id) %><br />
-    <br />
-    <%= link_to "sign out", destroy_user_session_path, method: :delete %>
-  <% else %>
-    <h3>Please login!!!!!!!!</h3>
-    <h3>If you are new user then sign up</h3>
-    <%= link_to "sign in", new_user_registration_path %>
-    <%= link_to "sign in", new_user_session_path %>
-  <% end %>
+    </table>
+  </div>
+</div>

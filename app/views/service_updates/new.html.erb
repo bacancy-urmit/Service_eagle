@@ -1,30 +1,33 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<div class="container">
-  <div class="row">
-    <div class="col-md-6">
-      <%= form_with model: @update do |f| %>
-      <div class="form-group">
-        <%= f.label :bookingid %><br />
-        <%= text_field_tag :bookingid %>
+<%= render "service_center_admins/nav" %>
+<div class="booked-appointment-index_page">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <%= form_with model: @update do |f| %>
+        <div class="form-group">
+          <%= f.label :bookingid %><br />
+          <%= text_field_tag :bookingid, nil,readonly: true, value: @booked_appointment.token, read_only: true %>
+        </div>
+        <div class="form-group">
+          <%= f.label :description %><br />
+          <%= f.text_field :description %>
+        </div>
+        <div class="form-group" id="status">
+          <%= f.label :status %><br />
+          <%= f.select :service_status, options_for_select([["inprogress", "inprogress"], ["completed", "completed"]]), { :class => "form-control", :prompt => "Select service status" } %>
+        </div>
+        <div class="form-group">
+          <%= f.label :estimation %><br />
+          <%= f.text_field :estimation %>
+        </div>
+        <div>
+          <%= f.submit class: "btn btn-primary" %>
+        </div>
+        <br />
+        <br />
+        <% end %>
       </div>
-      <div class="form-group">
-        <%= f.label :description %><br />
-        <%= f.text_field :description %>
-      </div>
-      <div class="form-group" id="status">
-        <%= f.label :status %><br />
-        <%= f.select :service_status, options_for_select([["inprogress", "inprogress"], ["completed", "completed"]]), { :class => "form-control", :prompt => "Select service status" } %>
-      </div>
-      <div class="form-group">
-        <%= f.label :estimation %><br />
-        <%= f.text_field :estimation %>
-      </div>
-      <div>
-        <%= f.submit class: "btn btn-primary" %>
-      </div>
-      <br />
-      <br />
-      <% end %>
     </div>
   </div>
 </div>

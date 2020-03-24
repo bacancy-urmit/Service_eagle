@@ -1,0 +1,38 @@
+<table class='table'>
+  <thead>
+    <tr>
+      <th scope='col'>boking id</th>
+      <th scope='col'>vehicle name</th>
+      <th scope='col'>service</th>
+      <th scope='col'>service date</th>
+      <th scope='col'>pickup date</th>
+      <th scope='col'>special request</th>
+      <th scope='col'>employee name</th>
+      <th scope='col'>drop time</th>
+      <th scope='col'>pickup time</th>
+      <th scope='col'>service status</th>
+      <th scope='col'>service center</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @active_services.each do |service| %>
+    <tr class="tr">
+      <td scope='row'><%= service.token %></td>
+      <td scope='row'><%= service.vehicle_name %></td>
+      <td scope='row'><%= service.service %></td>
+      <td scope='row'><%= service.service_date %></td>
+      <td scope='row'><%= service.pickup_date %></td>
+      <td scope='row'><%= service.special_request %></td>
+      <td scope='row'><%= service.employee_name %></td>
+      <td scope='row'><%= service.drop_time %></td>
+      <td scope='row'><%= service.pickup_time %></td>
+      <td scope='row'><%= service.service_status %></td>
+      <td scope='row'><%= service.service_center.name %></td>
+      <td scope='row'><%= link_to "add update", new_update_path(service.id) %></td>
+      </td>
+      <td scope='row'><%= link_to "show", booked_appointment_path(service.id) %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>

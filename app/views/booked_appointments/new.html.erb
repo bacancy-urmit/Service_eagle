@@ -1,24 +1,5 @@
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-to justify-content-between">
-    <ul class="navbar-nav">
-      <li class="navbar-brand">
-        <span class="nav-link"><%= link_to "book appointment", new_booked_appointment_path %></span>
-      </li>
-      <li class="navbar-brand">
-        <span class="nav-link"> <%= link_to "Edit profile", edit_user_registration_path %></span>
-      </li>
-      <li class="navbar-brand">
-        <span class="nav-link"> <%= link_to "Sign out", destroy_user_session_path %></span>
-      </li>
-    </ul>
-    <ul class="navbar-nav">
-      <li class="navbar-brande">
-        <%= form_tag booked_appointments_path, class: "form-inline", :method => "get" do %>
-        <%= text_field_tag :booking_id, "Search booking", class: "form-control mr-sm-2" %>
-        <%= submit_tag "search", class: "btn btn-outline-success my-2 my-sm-0" %>
-        <% end %>
-      </li>
-    </ul>
-  </nav>
+<%= render "nav" %>
+<div class='booked-appointment-index_page'>
 <div class="container">
   <div class="row">
     <div class="col-md-6">
@@ -26,16 +7,12 @@
       <%= f.select(:service_center_id, options_from_collection_for_select(ServiceCenter.all, :id, :name), { :class => "form-control", :prompt => "Select service center" }) %>
       <br />
       <br />
-      <div class="form-group" id="vehicle_type">
-        <%= f.radio_button :vehicle_type, "two-wheeler", checked: true %>two-wheeler
-        <%= f.radio_button :vehicle_type, "four-wheeler" %>four-wheeler
-      </div>
-      <div class="form-group" id="two_wheeler">
-        <%= f.label :vehicle_name %><br />
-        <%= f.select(:vehicle_name, options_for_select(BookedAppointment::Two_wheeler), { :prompt => "select your vehicle " }) %>
-      </div>
       <div class="form-group">
-        <%= f.label :service %><br />
+        <%= f.label :vehicle_name %><br />
+        <%= f.text_field :vehicle_name %>
+      </div>
+      <div >
+        <%= f.label :service, class:"form-group" %><br />
         <%= f.select(:service, options_for_select([["first(free)", "firstfree"], ["second(free)", "secondfree"], ["third(free)", "thirdfree"], ["paid", "paid"]]), { :prompt => "select your service type" }) %>
       </div>
       <div class="form-group">
@@ -62,11 +39,11 @@
         <%= f.label :pickuptime %><br />
         <%= f.datetime_field :pickup_time, class: "form-control", placeholder: "%H:%M", min: Date.tomorrow, max: Date.tomorrow + 1 %>
       </div>
-      <%= f.submit class: "btn btn-primary" %>
+      <%= f.submit class: "btn btn-dark" %>
       <br />
       <br />
-      <%= link_to "go back", root_path %>
       <% end %>
     </div>
   </div>
+</div>
 </div>

@@ -1,0 +1,20 @@
+<nav class="navbar navbar-expand-sm  navbar-dark fixed-to justify-content-between" style="background-color:#C1CDC1;">
+  <ul class="navbar-nav" style="list-style-type: none; float: left;">
+    <li class="navbar-brand">
+      <span class="nav-link"><%= link_to "show company admin",company_admin_index_path %>
+    </li>
+
+    <li class="navbar-brand">
+      <span class="nav-link"><%= link_to "dashbord", super_admins_path %></span>
+    </li>
+  </ul>
+  <ul class="navbar-nav" style="list-style-type: none; float: right;">
+    
+    <li class="navbar-brand">
+      <span class="nav-link"> <%= link_to "edit profle", edit_user_registration_path(current_user.id) %></span>
+    </li>
+    <li class="navbar-brand">
+      <span class="nav-link"> <%= link_to "signout", destroy_user_session_path, method: :delete %></span>
+    </li>
+  </ul>
+</nav>

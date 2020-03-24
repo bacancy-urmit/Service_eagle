@@ -3,8 +3,8 @@
 class ServiceCenterCapacitiesController < ApplicationController
   before_action :authenticate_user!
   def new
-    @servicecenter = current_user.user_servicecenter.service_center.name
-    @set_count = ServiceCenterCapacity.new
+    @servicecenter_name = current_user.user_servicecenter.service_center.name
+    @set_service_center_count = ServiceCenterCapacity.new
   end
 
   def index
@@ -13,14 +13,15 @@ class ServiceCenterCapacitiesController < ApplicationController
   end
 
   def create
-    @set_count = ServiceCenterCapacity.new(allowed_parameter)
+    @set_service_center_count = ServiceCenterCapacity.new(allowed_parameter)
     @servicecenter = current_user.user_servicecenter.service_center.id
-    @set_count.service_center_id = @servicecenter
-    if @set_count.save
+    @set_service_center_count.service_center_id = @servicecenter
+    if @set_service_center_count.save
       flash.alert = 'count set successfully'
-      redirect_to service_center_admins_path
+      redirect_to service_center_admin_pending_appointments_path
     else
       flash.alert = 'count not set successfully'
+      redirect_to service_center_admin_pending_appointments_path
     end
   end
 

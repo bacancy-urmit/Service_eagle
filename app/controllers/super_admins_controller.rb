@@ -3,6 +3,10 @@
 # super admin controller which cerates new company admin
 class SuperAdminsController < ApplicationController
   before_action :authenticate_user!
+  def index
+    @company_admins = CompanyAdmin.all
+    @service_center_admins=UserServicecenter.all
+  end
   def new
     @user = User.new
   end

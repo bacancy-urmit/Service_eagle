@@ -1,0 +1,32 @@
+<div class='container'>
+  <h2>Company Admins</h2>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>first name</th>
+        <th>lastname</th>
+        <th>username</th>
+        <th>email</th>
+        <th>contact</th>
+        <th>company</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @company_admins.each do |admin| %>
+      <tr>
+        <td><%= admin.user.firstname %></td>
+        <td><%= admin.user.lastname %></td>
+        <td><%= admin.user.username %></td>
+        <td><%= admin.user.email %></td>
+        <td><%= admin.user.contact %></td>
+        <td><%= admin.company.name%>
+        <td>
+        <td><%= link_to "edit", edit_company_admin_path(admin.id) %></td>
+        <td><%= link_to "delete", company_admin_path(admin.id), data: { method: :delete } %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+</div>
+</nav>

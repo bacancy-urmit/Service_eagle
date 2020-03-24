@@ -1,18 +1,13 @@
-  <%if user_signed_in?%>
+ <%= render "service_center_admins/nav" %>
   <div class="container">
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
           <%= label_tag :booking_id %><br/>
-          <%= text_field :booking_id, params[:search],class: "form-control" %>
+          <%= text_field :booking_id, params[:search], class: "form-control" %>
         </div>
-        <%=submit_tag "search" ,class: "btn btn-primary"%>
+        <%= submit_tag "search", class: "btn btn-primary" %>
       </div>
     </div>
   </div>
-<% else %>
-  <h3>Please login!!!!!!!!</h3>
-  <h3>If you are new user then sign up</h3>
-  <%= link_to "sign in", new_user_registration_path %>
-  <%= link_to "sign in", new_user_session_path %>
-<% end %>
+

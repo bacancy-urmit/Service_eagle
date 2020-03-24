@@ -1,0 +1,19 @@
+/* eslint-env browser */
+
+(() => {
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((regs) => {
+      // clear all worker caches
+      caches.keys().then((cacheKeys) => {
+        cacheKeys.forEach((cacheKey) => {
+          caches.delete(cacheKey);
+        });
+      });
+
+      // unregister all workers
+      regs.forEach((reg) => {
+        reg.unregister();
+      });
+    });
+  }
+})();

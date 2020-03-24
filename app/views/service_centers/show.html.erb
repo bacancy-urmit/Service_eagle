@@ -1,27 +1,32 @@
-<% if user_signed_in? %>
-<div class='container'>
-  <%= link_to "add service center", new_service_center_admin_path %><br /><br />
-  <table class='table'>
-    <thead>
-      <tr>
-        <th scope='col'>service center name</th>
-        <th scope='col'>area</th>
-        <th scope='col'>city</th>
-        <th scope='col'>state</th>
-        <th scope='col'>pincode</th>
-        <th scope='col'>email</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td scope='row'><%= @center.name %></td>
-        <td scope='row'><%= @center.city %></td>
-        <td scope='row'><%= @center.area %></td>
-        <td scope='row'><%= @center.state %></td>
-        <td scope='row'><%= @center.pincode %></td>
-        <td scope='row'><%= @center.email %></td>
-        <%= link_to "dashbord", super_admins_path %>
-      </tr>
-    </tbody>
-</div>
+<% if current_user.has_role? :super_admin %>
+<%= render "superadmin_nav" %>
+<% elsif current_user.has_role? :company_admin %>
+<%= render "companyadmin_nav" %>
 <% end %>
+<div class='booked-appointment-index_page'>
+  <div class='container'>
+    <%= link_to "add service center", new_service_center_admin_path %><br /><br />
+    <table class='table'>
+      <thead>
+        <tr>
+          <th scope='col'>service center name</th>
+          <th scope='col'>area</th>
+          <th scope='col'>city</th>
+          <th scope='col'>state</th>
+          <th scope='col'>pincode</th>
+          <th scope='col'>email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td scope='row'><%= @center.name %></td>
+          <td scope='row'><%= @center.city %></td>
+          <td scope='row'><%= @center.area %></td>
+          <td scope='row'><%= @center.state %></td>
+          <td scope='row'><%= @center.pincode %></td>
+          <td scope='row'><%= @center.email %></td>
+          <%= link_to "dashbord", super_admins_path %>
+        </tr>
+      </tbody>
+  </div>
+</div>

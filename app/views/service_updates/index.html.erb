@@ -1,4 +1,5 @@
-<% if user_signed_in? %>
+<%= render "service_center_admins/nav" %>
+<div class="booked-appointment-index_page">
   <div class="container">
     <%= form_tag service_updates_path, :method => "get" do %>
       <div class="form-group">
@@ -7,7 +8,6 @@
         <%= submit_tag "search", class: "btn btn-primary" %>
       </div>
     <% end %>
-    <%= link_to "add update", new_service_update_path %>
     <table class='table'>
       <thead>
         <tr>
@@ -30,10 +30,5 @@
         <% end %>
       </tbody>
     </table>
-  <% else %>
-    <h3>Please login!!!!!!!!</h3>
-    <h3>If you are new user then sign up</h3>
-    <%= link_to "sign in", new_user_registration_path %>
-    <%= link_to "sign in", new_user_session_path %>
-  </div>
-<% end %>
+    </div>
+    </div>

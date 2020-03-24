@@ -1,7 +1,8 @@
-<% if user_signed_in? %>
-  <div class = 'container'>
-    <%= link_to "add company admin", new_company_admin_path %><br/>
-    <br/>
+<%= render "superadmin_nav" %>
+<div class='booked-appointment-index_page'>
+  <div class='container'>
+    <%= link_to "add company admin", new_company_admin_path %><br />
+    <br />
     <table class='table'>
       <thead>
         <tr>
@@ -13,16 +14,17 @@
         </tr>
       </thead>
       <% @service_center_admin.each do |adminn| %>
-        <tbody>
-          <tr>
-            <th scope='row'><%= adminn.firstname %></th>
-            <th scope='row'><%= adminn.lastname %></th>
-            <th scope='row'><%= adminn.username %></th>
-            <th scope='row'><%= adminn.email %></th>
-            <th scope='row'><%= adminn.contact %></th>
-            <th scope='row'><%= link_to "edit", edit_company_admin_path(adminn.id) %></th>
-            <th scope='row'><%= link_to "delete", company_admin_path(adminn.id), data: { method: :delete } %></th>
+      <tbody>
+        <tr>
+          <th scope='row'><%= adminn.firstname %></th>
+          <th scope='row'><%= adminn.lastname %></th>
+          <th scope='row'><%= adminn.username %></th>
+          <th scope='row'><%= adminn.email %></th>
+          <th scope='row'><%= adminn.contact %></th>
+          <th scope='row'><%= link_to "edit", edit_company_admin_path(adminn.id) %></th>
+          <th scope='row'><%= link_to "delete", company_admin_path(adminn.id), data: { method: :delete } %></th>
           <% end %>
           <%= link_to "dashbord", super_admins_path %>
-        <% end %>
-      </div>
+          <% end %>
+  </div>
+</div>

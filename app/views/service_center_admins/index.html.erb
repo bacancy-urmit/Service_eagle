@@ -1,7 +1,9 @@
-<% if user_signed_in? and current_user.has_role? :super_admin or current_user.has_role? :company_admin %>
-  <%= link_to "add service center admin", new_service_center_admin_path %><br/>
-  <br/>
-  <%= link_to "sign out", destroy_user_session_path, method: :delete %>
+<% if current_user.has_role? :super_admin %>
+<%= render "superadmin_nav" %>
+<% elsif current_user.has_role? :company_admin %>
+<%= render "companyadmin_nav" %>
+<% end %>
+<div class='booked-appointment-index_page'>
   <div class='container'>
     <table class='table'>
       <thead>
@@ -15,34 +17,20 @@
       </thead>
       <tbody>
         <% @service_center_admin.each do |adminn| %>
-          <tr>
-            <td scope='row'><%= adminn.firstname %></td>
-            <td scope='row'><%= adminn.lastname %></td>
-            <td scope='row'><%= adminn.username %></td>
-            <td scope='row'><%= adminn.email %></td>
-            <td scope='row'><%= adminn.contact %></td>
-            <td scope='row'><%= link_to "edit", edit_service_center_admin_path(adminn.id) %></td>
-            <td scope='row'>
-              <%= link_to "delete", service_center_admin_path(adminn.id), :confirm => "are you sure?", data: { method: :delete } %>
-            </td>
-          </tr>
-        </tbody>
-      <% end %>
-    <% elsif user_signed_in? and current_user.has_role? :servicecenter_admin %>
-      <%= link_to "add sparepats", new_sparepart_path %><br/>
-      <br/>
-      <%= link_to "edit", edit_user_registration_path(current_user.id) %><br/>
-      <br/>
-      <%= link_to "set service count", new_service_center_capacity_path %><br/>
-      <br/>
-      <%= link_to "show updates", service_updates_path %><br/>
-      <br/>
-      <%= link_to 'used spareparts', used_spareparts_path %><br/>
-      <br/>
-      <%= link_to "sign out", destroy_user_session_path, method: :delete %>
-    <% else %>
-      <h3>Please login!!!!!!!!</h3>
-      <h3>If you are new user then sign up</h3>
-      <%= link_to "sign in", new_user_registration_path %>
-      <%= link_to "sign in", new_user_session_path %>
-    <% end %>
+        <tr>
+          <td scope='row'><%= adminn.firstname %></td>
+          <td scope='row'><%= adminn.lastname %></td>
+          <td scope='row'><%= adminn.username %></td>
+          <td scope='row'><%= adminn.email %></td>
+          <td scope='row'><%= adminn.contact %></td>
+          <td scope='row'><%= link_to "edit", edit_service_center_admin_path(adminn.id) %></td>
+          <td scope='row'>
+            <%= link_to "delete", service_center_admin_path(adminn.id), :confirm => "are you sure?", data: { method: :delete } %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>

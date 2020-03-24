@@ -11,7 +11,7 @@ class InvoicesController < ApplicationController
                   else
                     'invoice can not be created'
                   end
-    redirect_to new_service_update_path
+    redirect_to service_center_admin_pending_appointments_path
   end
 
   def show

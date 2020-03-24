@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_12_163138) do
+ActiveRecord::Schema.define(version: 2020_03_17_103334) do
 
   create_table "booked_appointments", force: :cascade do |t|
     t.string "vehicle_name"
@@ -26,7 +26,6 @@ ActiveRecord::Schema.define(version: 2020_03_12_163138) do
     t.integer "service_center_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "vehicle_type"
     t.string "token"
     t.index ["service_center_id"], name: "index_booked_appointments_on_service_center_id"
     t.index ["user_id"], name: "index_booked_appointments_on_user_id"
@@ -63,13 +62,12 @@ ActiveRecord::Schema.define(version: 2020_03_12_163138) do
   end
 
   create_table "payments", force: :cascade do |t|
-    t.boolean "is_payment_received"
-    t.decimal "service_charge"
-    t.decimal "total"
+    t.float "received_payment"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "appoinment_bookings_id"
-    t.index ["appoinment_bookings_id"], name: "index_payments_on_appoinment_bookings_id"
+    t.integer "booked_appointment_id"
+    t.string "payment_confirmation", default: "pending"
+    t.index ["booked_appointment_id"], name: "index_payments_on_booked_appointment_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -130,6 +128,8 @@ ActiveRecord::Schema.define(version: 2020_03_12_163138) do
     t.datetime "manufactured_year"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "service_center_id"
+    t.index ["service_center_id"], name: "index_spareparts_on_service_center_id"
   end
 
   create_table "used_spareparts", force: :cascade do |t|
@@ -145,9 +145,9 @@ ActiveRecord::Schema.define(version: 2020_03_12_163138) do
 
   create_table "user_servicecenters", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.integer "service_center_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "service_center_id"
     t.index ["service_center_id"], name: "index_user_servicecenters_on_service_center_id"
     t.index ["user_id"], name: "index_user_servicecenters_on_user_id"
   end
@@ -182,9 +182,10 @@ ActiveRecord::Schema.define(version: 2020_03_12_163138) do
   add_foreign_key "company_admins", "companies"
   add_foreign_key "company_admins", "users"
   add_foreign_key "invoices", "booked_appointments"
-  add_foreign_key "payments", "booked_appointments", column: "appoinment_bookings_id"
+  add_foreign_key "payments", "booked_appointments"
   add_foreign_key "service_center_capacities", "service_centers"
   add_foreign_key "service_updates", "booked_appointments"
+  add_foreign_key "spareparts", "service_centers"
   add_foreign_key "used_spareparts", "booked_appointments"
   add_foreign_key "used_spareparts", "spareparts"
   add_foreign_key "user_servicecenters", "service_centers"

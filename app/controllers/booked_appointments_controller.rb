@@ -7,14 +7,6 @@ class BookedAppointmentsController < ApplicationController
   before_action :allowed_parameter, only: %i[create update]
   before_action :find_booked_appointment, only: %i[edit update show destroy]
 
-  def index
-    @opts = if params[:vehicle] == 'two'
-              BookedAppointment::Two_wheeler
-            else
-              BookedAppointment::Four_wheeler
-            end
-  end
-
   def new
     @book_appoinment = BookedAppointment.new
   end
@@ -47,15 +39,14 @@ class BookedAppointmentsController < ApplicationController
   end
 
   def find_all_booked_appointments_for_user
-    @booked_appointments = BookedAppointment.search(params[:booking_id])
-    @booked_appointments.each do |appoinment|
-      @servicecenter = ServiceCenter.find(appoinment.service_center_id)
-    end
+    @booked_appointments = BookedAppointment.search(params[:booking_id], current_user)
   end
 
   def allowed_parameter
     params.require(:booked_appointment).permit(:vehicle_type, :service_center_id, :vehicle_name, :service, :service_date, :pickup_date, :special_request, :service_status, :employee_name, :drop_time, :pickup_time)
   end
+
+  private
 
   def find_booked_appointment
     @book_appoinment = BookedAppointment.find(params[:id])

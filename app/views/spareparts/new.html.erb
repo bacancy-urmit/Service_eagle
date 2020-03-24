@@ -1,47 +1,44 @@
-<% if user_signed_in? %>  
-<div class= "container">
-<div class= "row">
-<div class= "col-md-6"> 
-<%= form_with model: @newsparepart, validate: true, local: true do |f| %>
-    <% if @newsparepart.errors.full_messages.any? %>
-      <% @newsparepart.errors.full_messages.each do |error_message| %>
-      <%= error_message if @user.errors.full_messages.first == error_message %> <br />
-      <% end %>
-      <% end %>
-  <div class= "form-group"> 
-  <%= f.label :vehiclename %>
-  <%= f.text_field :vehicle_name, class: "form-control" %>
-  </div>
+<%= render "service_center_admins/nav" %>
+<div class="booked-appointment-index_page">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= label_tag :servicecenter %>
+          <%= text_field_tag :service_center_id, value = @servicecenter_name, class: "form-control", readonly: true %>
+        </div>
+        <%= form_with model: @newsparepart, validate: true, local: true do |f| %>
 
-  <div class= "form-group"> 
-  <%= f.label :sparepartname %>
-  <%= f.text_field :sparepart_name, class: "form-control" %>
-  </div>
+        <div class="form-group">
+          <%= f.label :vehiclename %>
+          <%= f.text_field :vehicle_name, class: "form-control" %>
+        </div>
 
-  <div class= "form-group"> 
-  <%= f.label :price %>
-  <%= f.number_field :price, min: 0, class: "form-control" %>
-  </div>
+        <div class="form-group">
+          <%= f.label :sparepartname %>
+          <%= f.text_field :sparepart_name, class: "form-control" %>
+        </div>
 
-  <div class= "form-group"> 
-  <%= f.label :quantity %>
-  <%= f.number_field :quantity, min: 0, class: "form-control" %>
-  </div>
+        <div class="form-group">
+          <%= f.label :price %>
+          <%= f.number_field :price, min: 0, class: "form-control" %>
+        </div>
 
-  <div class= "form-group"> 
-  <%= f.label :manufactured_year %>
-  <%= f.date_field :manufactured_y, max: Date.today, class: "form-control" %>
-  </div>
+        <div class="form-group">
+          <%= f.label :quantity %>
+          <%= f.number_field :quantity, min: 0, class: "form-control" %>
+        </div>
 
-  <%= f.submit class: "btn btn-primary" %>
-    <br />
-    <br/> <%= link_to "go back", service_center_admins_path %>
-    <% end %>
+        <div class="form-group">
+          <%= f.label :manufactured_year %>
+          <%= f.date_field :manufactured_year, max: Date.today, class: "form-control" %>
+        </div>
+
+        <%= f.submit class: "btn btn-primary" %>
+        <br />
+        <br /> <%= link_to "go back", service_center_admins_path %>
+        <% end %>
+      </div>
+    </div>
   </div>
-  </div>
-  </div>
-  <% else %>
-<h3>Please login!!!!!!!</h3>
-<h3>If you are new user then sign up</h3> <%= link_to "sign up", new_user_registration_path %> 
-<%= link_to "sign in", new_user_session_path %>  
-<% end %>
+</div>

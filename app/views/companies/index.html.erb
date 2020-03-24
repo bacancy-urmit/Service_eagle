@@ -1,46 +1,30 @@
-<% if user_signed_in? and current_user.has_role? :super_admin %>
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-to justify-content-between">
-  <ul class="navbar-nav">
-    <li class="navbar-brand">
-      <span class="nav-link"><%= link_to "add company", new_company_path %>
-    </li>
-
-    <li class="navbar-brand">
-      <span class="nav-link"><%= link_to "dashbord", super_admins_path %></span>
-    </li>
-    <li class="navbar-brand">
-      <span class="nav-link"> <%= link_to "signout", destroy_user_session_path, method: :delete %></span>
-    </li>
-  </ul>
-</nav>
-<div class="container">
-  <br />
-  <br />
-  <br />
-  <table class='table'>
-    <thead>
-      <tr>
-        <th scope='col'>company name</th>
-        <th scope='col'>website</th>
-        <th scope='col'>email</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @companies.each do |company| %>
-      <tr>
-        <th scope='row'><%= company.name %></th>
-        <th scope='row'><%= company.website %></th>
-        <th scope='row'><%= company.email %></th>
-        <th scope='row'><%= link_to "edit", edit_company_path(company.id) %></th>
-        <th scope='row'><%= link_to "delete", company_path(company.id), data: { method: :delete } %></th>
-      </tr>
-      <% end %>
-    </tbody>
-
+<% if current_user.has_role? :super_admin %>
+<%= render "superadmin_nav" %>
+<div class='booked-appointment-index_page'>
+  <div class="container">
+    <br />
+    <br />
+    <br />
+    <table class='table'>
+      <thead>
+        <tr>
+          <th scope='col'>company name</th>
+          <th scope='col'>website</th>
+          <th scope='col'>email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @companies.each do |company| %>
+        <tr>
+          <th scope='row'><%= company.name %></th>
+          <th scope='row'><%= company.website %></th>
+          <th scope='row'><%= company.email %></th>
+          <th scope='row'><%= link_to "edit", edit_company_path(company.id) %></th>
+          <th scope='row'><%= link_to "delete", company_path(company.id), data: { method: :delete } %></th>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
-<% else %>
-<h3>Please login!!!!!!!!</h3>
-<h3>If you are new user then sign up</h3>
-<%= link_to "sign in", new_user_registration_path %>
-<%= link_to "sign in", new_user_session_path %>
 <% end %>

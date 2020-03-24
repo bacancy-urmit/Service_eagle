@@ -6,8 +6,16 @@ class ServiceCenterAdminsController < ApplicationController
 
   def index
     @count = ServiceCenterCapacity.find_by('date', Date.tomorrow)
+    begin
+      service_center_id = current_user.user_servicecenter.service_center.id
+    rescue StandardError
+      @service_center_admin = User.service_center_admins
+    end
+  end
 
-    @service_center_admin = User.service_center_admins
+  def show_pending_appointments
+    service_center_id = current_user.user_servicecenter.service_center.id
+    @pending_services = BookedAppointment.active_services.where('service_center_id =?', service_center_id)
   end
 
   def new
