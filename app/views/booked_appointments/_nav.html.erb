@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand-sm  fixed-to justify-content-between" style="background-color:#C1CDC1;">
+  <ul class="navbar-nav" style="list-style-type: none; float: left;">
+  <li class="navbar-brand"> <span class="nav-link"><%= link_to "Home", root_path %></span></li>
+    <li class="navbar-brand">
+      <span class="nav-link"><%= link_to "book appointment", new_booked_appointment_path %></span>
+    </li>
+    <li class="navbar-brand">
+      <span class="nav-link"> <%= link_to "Edit profile", edit_user_registration_path %></span>
+    </li>
+    <li class="navbar-brand">
+      <span class="nav-link"> <%= link_to "Show appointments", booked_appointments_path %></span>
+    </li>
+    </ul>
+    <ul class="navbar-nav" style="list-style-type: none; float: right;">
+    <li class="navbar-brand" style="padding:10px;">
+    <%= form_tag booked_appointments_path, class: "form-inline", :method => "get" do %>
+        <%= text_field_tag :booking_id, nil, placeholder: "Enter booking id", class: "form-control mr-sm-2" %>
+        <%= submit_tag "search", class: "btn btn-outline-success my-2 my-sm-0" %>
+    <% end %>
+    </li>
+    <li class="navbar-brand">
+     <span class="nav-link">  <%= link_to "Sign out", destroy_user_session_path, method: :delete %></span>
+    </li>
+  </ul>
+</nav>

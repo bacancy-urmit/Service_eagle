@@ -1,0 +1,41 @@
+<%= render "nav" %>
+<div class='booked-appointment-index_page'>
+<div class='container'>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th scope='col'>boking id</th>
+        <th scope='col'>vehicle name</th>
+        <th scope='col'>service</th>
+        <th scope='col'>service date</th>
+        <th scope='col'>pickup date</th>
+        <th scope='col'>special request</th>
+        <th scope='col'>employee name</th>
+        <th scope='col'>drop time</th>
+        <th scope='col'>pickup time</th>
+        <th scope='col'>service status</th>
+        <th scope='col'>service center</th>
+      </tr>
+    </thead>
+    <tbody>
+       <tr>
+        <td scope='row'><%= @book_appoinment.token %></td>
+        <td scope='row'><%= @book_appoinment.vehicle_name %></td>
+        <td scope='row'><%= @book_appoinment.service %></td>
+        <td scope='row'><%= @book_appoinment.service_date %></td>
+        <td scope='row'><%= @book_appoinment.pickup_date %></td>
+        <td scope='row'><%= @book_appoinment.special_request %></td>
+        <td scope='row'><%= @book_appoinment.employee_name %></td>
+        <td scope='row'><%= @book_appoinment.drop_time %></td>
+        <td scope='row'><%= @book_appoinment.pickup_time %></td>
+        <td scope='row'><%= @book_appoinment.service_status %></td>
+        <td scope='row'><%= @servicecenter.name %></td>
+        <td scope='row'><%= link_to "edit", edit_booked_appointment_path(@book_appoinment.id) %></td>
+        <td scope='row'><%= link_to "show updates", booked_appointment_path(@book_appoinment.id) %></td>
+        <td scope='row'><%= link_to "delete", booked_appointment_path(@book_appoinment.id), data: { method: :delete } %></td>
+      </tr>
+    </tbody>
+    <%= link_to "dashbord", root_path %>
+  </table>
+</div>
+</div>

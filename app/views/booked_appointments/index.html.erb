@@ -1,0 +1,50 @@
+
+  <%= render "nav" %>
+  <div class='booked-appointment-index_page'>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th scope='col'>boking id</th>
+          <th scope='col'>vehicle name</th>
+          <th scope='col'>service</th>
+          <th scope='col'>service date</th>
+          <th scope='col'>pickup date</th>
+          <th scope='col'>special request</th>
+          <th scope='col'>employee name</th>
+          <th scope='col'>drop time</th>
+          <th scope='col'>pickup time</th>
+          <th scope='col'>service status</th>
+          <th scope='col'>service center</th>
+          <th scope='col'></th>
+          <th scope='col'></th>
+          <th scope='col'></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @booked_appointments.each do |appoinment| %>
+        <tr class="tr">
+          <td scope='row'><%= appoinment.token %></td>
+          <td scope='row'><%= appoinment.vehicle_name %></td>
+          <td scope='row'><%= appoinment.service %></td>
+          <td scope='row'><%= appoinment.service_date %></td>
+          <td scope='row'><%= appoinment.pickup_date %></td>
+          <td scope='row'><%= appoinment.special_request %></td>
+          <td scope='row'><%= appoinment.employee_name %></td>
+          <td scope='row'><%= appoinment.drop_time %></td>
+          <td scope='row'><%= appoinment.pickup_time %></td>
+          <td scope='row' id="service_status"><%= appoinment.service_status %></td>
+          <td scope='row'><%= appoinment.service_center.name %></td>
+          <td scope='row' id="edit_option">
+            <%= link_to "edit", edit_booked_appointment_path(appoinment.id), class: "link_to" %></td>
+          <td scope='row' id="show_option">
+            <%= link_to "show", booked_appointment_path(appoinment.id), class: "link_to" %></td>
+          <td scope='row' id="delete_option">
+            <%= link_to "delete", booked_appointment_path(appoinment.id), method: :delete, class: "link_to" %></td>
+          <td scope='row' id="show_invoice" style="display:none">
+            <%= link_to "show invoice", invoice_path(appoinment.id), class: "link_to" %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>

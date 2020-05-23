@@ -1,0 +1,27 @@
+<div class='booked-appointment-index_page'>
+  <div class='container'>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th scope='col'>first name</th>
+          <th scope='col'>lastname</th>
+          <th scope='col'>username</th>
+          <th scope='col'>email</th>
+          <th scope='col'>contact</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td scope='row'><%= adminn.firstname %></td>
+          <td scope='row'><%= adminn.lastname %></td>
+          <td scope='row'><%= adminn.username %></td>
+          <td scope='row'><%= adminn.email %></td>
+          <td scope='row'><%= adminn.contact %></td>
+        </tr>
+      </tbody>
+    </table>
+    <%= link_to "dashbord", super_admins_path %><br />
+    <br />
+    <%= link_to "add service center admin", new_service_center_admin_path %>
+  </div>
+</div>

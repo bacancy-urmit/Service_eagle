@@ -1,0 +1,34 @@
+<%= render "service_center_admins/nav" %>
+<div class="booked-appointment-index_page">
+  <div class="container">
+    <%= form_tag service_updates_path, :method => "get" do %>
+      <div class="form-group">
+        <%= label_tag(:booking_id, "enter booking id") %><br/>
+        <%= text_field_tag :booking_id %>
+        <%= submit_tag "search", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th scope='col'>booking id</th>
+          <th scope='col'>status</th>
+          <th scope='col'>description</th>
+          <th scope='col'>estimation</th>
+          <th scope='col'>date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @updates.each do |update| %>
+          <tr>
+            <td scope='row'><%= update.token %></td>
+            <td scope='row'><%= update.service_status %></td>
+            <td scope='row'><%= update.description %></td>
+            <td scope='row'><%= update.estimation %></td>
+            <td scope='row'><%= update.created_at %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    </div>
+    </div>

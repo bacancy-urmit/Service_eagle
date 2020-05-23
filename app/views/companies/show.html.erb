@@ -1,0 +1,25 @@
+<%= render "superadmin_nav" %>
+<div class='booked-appointment-index_page'>
+  <div class="container">
+    <table class='table'>
+      <thead>
+        <tr>
+          <th scope='col'>company name</th>
+          <th scope='col'>website</th>
+          <th scope='col'>email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td scope='row'><%= @company.name %></td>
+          <td scope='row'><%= @company.website %></td>
+          <td scope='row'><%= @company.email %></td>
+          <td scope='row'><%= link_to "edit", edit_company_path(@company.id) %></td>
+          <% byebug %>
+          <td scope='row'><%= link_to "delete", company_path(@company.id), data: { method: :delete } %></td>
+        </tr>
+      </tbody>
+    </table>
+    <%= link_to "dashbord", super_admins_path %>
+  </div>
+</div>

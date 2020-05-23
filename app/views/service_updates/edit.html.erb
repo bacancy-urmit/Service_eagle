@@ -1,0 +1,34 @@
+<%= render "service_center_admins/nav" %>
+<div class="booked-appointment-index_page">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <%= form_with model: @update do |f| %>
+        <div class="form-group" id="two_wheeler">
+          <%= f.label :bookingid %><br />
+          <%= text_field :bookingid %>
+        </div>
+
+        <div class="form-group" id="two_wheeler">
+          <%= f.label :description %><br />
+          <%= f.text_field :description %>
+        </div>
+
+        <div class="form-group" id="two_wheeler">
+          <%= f.label :status %><br />
+          <%= f.text_field :status %>
+        </div>
+
+        <div class="form-group" id="two_wheeler">
+          <%= f.label :estimation %><br />
+          <%= f.text_field :estimation %>
+        </div>
+
+        <%= f.submit class: "btn btn-primary" %>
+        <br />
+        <br />
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

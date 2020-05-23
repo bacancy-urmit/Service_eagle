@@ -1,0 +1,36 @@
+<% if current_user.has_role? :super_admin %>
+<%= render "superadmin_nav" %>
+<% elsif current_user.has_role? :company_admin %>
+<%= render "companyadmin_nav" %>
+<% end %>
+<div class='booked-appointment-index_page'>
+  <div class='container'>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th scope='col'>first name</th>
+          <th scope='col'>lastname</th>
+          <th scope='col'>username</th>
+          <th scope='col'>email</th>
+          <th scope='col'>contact</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @service_center_admin.each do |adminn| %>
+        <tr>
+          <td scope='row'><%= adminn.firstname %></td>
+          <td scope='row'><%= adminn.lastname %></td>
+          <td scope='row'><%= adminn.username %></td>
+          <td scope='row'><%= adminn.email %></td>
+          <td scope='row'><%= adminn.contact %></td>
+          <td scope='row'><%= link_to "edit", edit_service_center_admin_path(adminn.id) %></td>
+          <td scope='row'>
+            <%= link_to "delete", service_center_admin_path(adminn.id), :confirm => "are you sure?", data: { method: :delete } %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>

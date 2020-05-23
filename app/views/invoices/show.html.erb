@@ -1,0 +1,93 @@
+<%= render "booked_appointments/nav" %>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body p-0">
+          <div class="row p-5">
+            <div class="col-md-6">
+            <img src="img/1.jpeg">
+            </div>
+            <div class="col-md-6 text-right">
+              <p class="font-weight-bold mb-1">Invoice</p>
+              <p class="text-muted">Due to: <%= Date.today %></p>
+
+
+              <hr class="my-5">
+
+              <div class="row pb-5 p-5">
+              </div>
+            </div>
+            <div class="col-md-6" style="float:left;">
+              <p class="font-weight-bold mb-4">From</p>
+              <p class="mb-1"><strong><%= @service_center.name %></strong></p>
+              <p class="mb-1"><%= @service_center.area %></p>
+              <p class="mb-1"><%= @service_center.city %>,<%= @service_center.pincode %></p>
+              <p class="mb-1"><%= @service_center.email %></p>
+            </div>
+            <div class="col-md-6 text-right">
+              <p class="font-weight-bold mb-4">Client information</p>
+              <p class="mb-1"><span class="text-muted">NAME: </span><%= @appointment.username %></p>
+              <p class="mb-1"><span class="text-muted">EMAIL:: </span><%= @appointment.email %></p>
+              <p class="mb-1"><span class="text-muted">contact </span> <%= @appointment.contact %></p>
+              <p class="mb-1" ><span class="text-muted">booking id: </span><%= @appointment.token %></p>
+            </div>
+          </div>
+          <div class="row p-5">
+            <div class="col-md-12">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope='col'></th>
+                    <th scope='col'>vehicle name</th>
+                    <th scope='col'>sparepart name</th>
+                    <th scope='col'>service</th>
+                    <th scope='col'>serviced date</th>
+                    <th scope='col'>quantity</th>
+                    <th scope='col'>price/ps</th>
+                    <th scope='col'>total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @used_spareparts.each do |sparepart| %>
+                  <tr>
+                    <td scope='row'></td>
+                    <td scope='row'><%= @appointment.vehicle_name %></td>
+                    <td scope='row'><%= sparepart.sparepart_name %></td>
+                    <td scope='row'><%= @appointment.service %></td>
+                    <td scope='row'><%= @appointment.service_date %></td>
+                    <td scope='row'><%= sparepart.quantity %></td>
+                    <td scope='row'><%= sparepart.price %></td>
+                    <td scope='row'><%= sparepart.total %></td>
+                  </tr>
+                  <% end %>
+                  <%= link_to "pay", make_payment_path(@invoice) %>
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+
+          
+
+            <div class="py-3 px-5 text-right">
+              <div class="mb-2">partial total</div>
+              <div class="h2 font-weight-light"><%= @partial_total %></div>
+            </div>
+
+            <div class="py-3 px-5 text-right">
+              <div class="mb-2">service charge</div>
+              <div class="h2 font-weight-light"><%= @invoice.service_charge %></div>
+            </div>
+            <div class="d-flex flex-row-reverse bg-dark text-white p-4">
+            <div class="py-3 px-5 text-right" style='display:inlin-block;'>
+              <div class="mb-2">Grand Total</div>
+              <div class="h2 font-weight-light"><%= @invoice.total %></div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

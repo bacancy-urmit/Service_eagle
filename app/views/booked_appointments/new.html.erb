@@ -1,0 +1,49 @@
+<%= render "nav" %>
+<div class='booked-appointment-index_page'>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <%= form_with model: @book_appoinment, url: booked_appointments_path, local: true, validate: true do |f| %>
+      <%= f.select(:service_center_id, options_from_collection_for_select(ServiceCenter.all, :id, :name), { :class => "form-control", :prompt => "Select service center" }) %>
+      <br />
+      <br />
+      <div class="form-group">
+        <%= f.label :vehicle_name %><br />
+        <%= f.text_field :vehicle_name %>
+      </div>
+      <div >
+        <%= f.label :service, class:"form-group" %><br />
+        <%= f.select(:service, options_for_select([["first(free)", "firstfree"], ["second(free)", "secondfree"], ["third(free)", "thirdfree"], ["paid", "paid"]]), { :prompt => "select your service type" }) %>
+      </div>
+      <div class="form-group">
+        <%= f.label :servicedate %><br />
+        <%= f.date_field :service_date, class: "form-control", placeholder: "dd/mm/yyyy", min: Date.tomorrow, max: Date.tomorrow + 1 %>
+      </div>
+      <div class="form-group">
+        <%= f.label :pickupdate %><br />
+        <%= f.date_field :pickup_date, class: "form-control", placeholder: "dd/mm/yyyy", min: Date.tomorrow, max: Date.tomorrow + 1 %>
+      </div>
+      <div class="form-group">
+        <%= f.label :description %><br />
+        <%= f.text_area :special_request, class: "form-control", placeholder: "any special thing that you want to point out or any special request" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :employeename %><br />
+        <%= f.text_field :employee_name, class: "form-control", placeholder: "your preferable employee" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :droptime %><br />
+        <%= f.datetime_field :drop_time, class: "form-control", placeholder: "%H:%M:%s", min: Date.tomorrow, max: Date.tomorrow + 1 %>
+      </div>
+      <div class="form-group">
+        <%= f.label :pickuptime %><br />
+        <%= f.datetime_field :pickup_time, class: "form-control", placeholder: "%H:%M", min: Date.tomorrow, max: Date.tomorrow + 1 %>
+      </div>
+      <%= f.submit class: "btn btn-dark" %>
+      <br />
+      <br />
+      <% end %>
+    </div>
+  </div>
+</div>
+</div>

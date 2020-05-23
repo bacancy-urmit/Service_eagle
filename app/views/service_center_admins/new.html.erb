@@ -1,0 +1,62 @@
+<% if current_user.has_role? :super_admin %>
+<%= render "superadmin_nav" %>
+<% elsif current_user.has_role? :company_admin %>
+<%= render "companyadmin_nav" %>
+<% end %>
+<div class='booked-appointment-index_page'>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <%= form_with model: @user, url: service_center_admins_path, validate: true, local: true do |f| %>
+
+        <%= select_tag(:service_center_id, options_from_collection_for_select(ServiceCenter.all, :id, :name), { :class => "form-control", :prompt => "Select service center" }) %>
+
+        <div class="form-group">
+          <%= f.label :firstname %><br />
+          <%= f.text_field :firstname, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+
+          <%= f.label :laststname %><br />
+          <%= f.text_field :lastname, class: "form-control" %>
+        </div>
+
+
+        <div class="form-group">
+
+          <%= f.label :username %><br />
+          <%= f.text_field :username, class: "form-control" %>
+        </div>
+
+
+        <div class="form-group">
+
+          <%= f.label :email %><br />
+          <%= f.text_field :email, class: "form-control" %>
+        </div>
+
+
+        <div class="form-group">
+
+          <%= f.label :contact %><br />
+          <%= f.text_field :contact, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+
+          <%= f.label :password %><br />
+          <%= f.password_field :password, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+
+          <%= f.label :password_confirmation %><br />
+          <%= f.password_field :password_confirmation, class: "form-control" %>
+        </div>
+        <%= f.submit "create admin", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

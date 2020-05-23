@@ -1,0 +1,22 @@
+  <%= render "service_center_admins/nav" %>
+  <div class='booked-appointment-index_page'>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <%= form_with model: @sparepart, local: true do |f| %>
+          <%= f.select(:sparepart_id, options_from_collection_for_select(Sparepart.all, :id, :sparepart_name), { :class => "form-control", :prompt => "Select sparepart" }) %>
+          <div class="form-group">
+            <%= f.label :quantity %><br />
+            <%= f.text_field :quantity, min: 0, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= label_tag :booking_id %><br />
+            <%= text_field_tag :booking_id, value = @booked_appointment.token %>
+          </div>
+          <%= f.submit "update", class: "btn btn-primary" %>
+          <% end %>
+          <%= link_to "back", service_center_admins_path %>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,44 @@
+<% if current_user.has_role? :super_admin %>
+<%= render "superadmin_nav" %>
+<% elsif current_user.has_role? :company_admin %>
+<%= render "companyadmin_nav" %>
+<% end %>
+<div class='booked-appointment-index_page'>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <%= form_with model: @company_admin, url: company_admin_index_path, local: true do |f| %>
+        <%= select_tag(:company_id, options_from_collection_for_select(Company.all, :id, :name), { :class => "form-control", :prompt => "Select company" }) %>
+        <div class="form-group">
+          <%= f.label :firstname %><br />
+          <%= f.text_field :firstname %>
+        </div>
+        <div class="form-group">
+          <%= f.label :laststname %><br />
+          <%= f.text_field :lastname %>
+        </div>
+        <div class="form-group">
+          <%= f.label :username %><br />
+          <%= f.text_field :username %>
+        </div>
+        <div class="form-group">
+          <%= f.label :email %><br />
+          <%= f.text_field :email %>
+        </div>
+        <div class="form-group">
+          <%= f.label :contact %><br />
+          <%= f.text_field :contact %>
+        </div>
+        <div class="form-group">
+          <%= f.label :password %><br />
+          <%= f.password_field :password %>
+        </div>
+        <div class="form-group">
+          <%= f.label :password_confirmation %><br />
+          <%= f.password_field :password_confirmation %>
+        </div>
+        <%= f.submit "create admin" %>
+      </div>
+    </div>
+  </div>
+</div>
